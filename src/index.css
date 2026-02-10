@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --color-sspb-dark: #011242;
+  --color-sspb-blue: #0a1f5e;
+  --color-sspb-cyan: #38bdf8; /* Яркий голубой для акцентов */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-sspb-dark text-white antialiased;
+    margin: 0;
+    /* Более сложный и глубокий современный градиент */
+    background: 
+      radial-gradient(circle at 15% 50%, rgba(30, 58, 138, 0.4), transparent 50%), /* Глубокий синий слева */
+      radial-gradient(circle at 85% 30%, rgba(76, 29, 149, 0.3), transparent 50%), /* Фиолетовый справа сверху */
+      linear-gradient(to bottom, #020617, #0f172a, #011242); /* Общий темный фон */
+    background-attachment: fixed; /* Фон стоит на месте при скролле */
+  }
+  html {
+  scroll-behavior: smooth;
+  }
+
+  /* Улучшение скроллбара для современных браузеров */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+/* Утилита для "стеклянных" рамок */
+@utility glass-border {
+    @apply border border-white/10;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+}

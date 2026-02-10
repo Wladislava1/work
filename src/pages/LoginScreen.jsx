@@ -1,0 +1,92 @@
+/* eslint-disable no-unused-vars */
+import { motion } from 'framer-motion';
+import { LogIn, Key } from 'lucide-react';
+
+export default function LoginScreen({ onBack, onRegisterClick }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.98 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.98 }}
+      transition={{ duration: 0.3 }}
+      // Установка шрифта 'Inter Tight' для соответствия App.jsx
+      className="min-h-screen bg-gradient-to-br from-[#0a0015] via-[#0f0a2a] to-[#001528] flex items-center justify-center px-5 font-['Inter_Tight']"
+    >
+      {/* Уменьшен max-width до 420px и padding до p-8/p-10 для уменьшения высоты */}
+      <div className="w-full max-w-[420px] bg-gradient-to-b from-white/8 to-white/3 backdrop-blur-2xl border border-white/10 rounded-[32px] p-8 md:p-10 shadow-[0_20px_60px_rgba(0,0,0,0.6)] relative overflow-hidden">
+        
+        {/* Декоративные блики */}
+        <div className="absolute -top-20 -right-20 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-blue-600/8 rounded-full blur-3xl" />
+
+        <div className="relative flex flex-col items-center">
+          <h2 className="text-white text-3xl font-black tracking-[0.05em] uppercase mb-1">SSPB ID</h2>
+          <p className="text-white/90 text-lg font-medium mb-1 tracking-wide">Добро пожаловать</p>
+          <p className="text-white/60 text-sm mb-8 text-center max-w-[280px]">
+            Введите учетные данные для доступа
+          </p>
+
+          <form className="w-full space-y-5"> {/* Уменьшен шаг между полями (space-y-5) */}
+            {/* Логин */}
+            <div className="space-y-1.5">
+              <label className="text-white/70 text-sm">Логин или Email</label>
+              <input
+                type="text"
+                className="w-full bg-blue-950/40 border border-white/10 rounded-xl py-3.5 px-5 text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-500/50 transition-all text-sm"
+                placeholder="example@sspb.ru"
+              />
+            </div>
+
+            {/* Пароль */}
+            <div>
+              <div className="flex justify-between items-center px-1">
+                <label className="text-white/70 text-sm ">Пароль</label>
+                <button type="button" className="text-blue-400/80 hover:text-blue-300 text-sm transition">
+                  Забыли пароль?
+                </button>
+              </div>
+              <input
+                type="password"
+                className="w-full bg-blue-950/40 border border-white/10 rounded-xl py-3.5 px-5 text-white placeholder:text-white/20 focus:outline-none focus:border-cyan-500/50 transition-all text-sm"
+                placeholder="••••••••"
+              />
+            </div>
+
+            {/* Кнопка входа — уменьшена высота py-3.5 */}
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/40 text-white rounded-xl py-3.5 font-bold text-sm uppercase flex items-center justify-center gap-2 transition-all shadow-lg mt-2"
+            >
+              <LogIn size={18}/>
+              Войти в систему
+            </motion.button>
+          </form>
+
+          <div className="mt-8 text-center space-y-4">
+            <p className="text-white/60 text-sm">
+              Нет аккаунта?{' '}
+              <button 
+              onClick={onRegisterClick}
+              className="text-blue-400 hover:text-blue-300 font-bold"
+              >
+                Зарегистрироваться
+              </button>
+            </p>
+
+            <button
+              onClick={onBack}
+              className="text-white/60 hover:text-white text-sm transition block w-full"
+            >
+              ← На главную
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 text-white/20 text-[10px] uppercase tracking-[0.3em] whitespace-nowrap">
+        Защищено SSPB ID © 2026
+      </div>
+    </motion.div>
+  );
+}
