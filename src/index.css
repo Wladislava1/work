@@ -1,45 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-sspb-dark: #011242;
-  --color-sspb-blue: #0a1f5e;
-  --color-sspb-cyan: #38bdf8; /* Яркий голубой для акцентов */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --color-sspb-dark: #111827; /* Мягкий темный (Slate 900) */
+  --color-sspb-blue: #1e3a8a; /* Глубокий синий */
+  --color-sspb-soft-bg: #1e293b; /* Slate 800 для фона */
+  --color-sspb-cyan: #38bdf8;
+  --font-manrope: 'Manrope', system-ui, sans-serif;
 }
 
 @layer base {
   body {
-    @apply bg-sspb-dark text-white antialiased;
+    @apply bg-sspb-dark text-white antialiased font-manrope;
     margin: 0;
-    /* Более сложный и глубокий современный градиент */
+    /* Мягкий, "дорогой" градиент, менее контрастный чем раньше */
     background: 
-      radial-gradient(circle at 15% 50%, rgba(30, 58, 138, 0.4), transparent 50%), /* Глубокий синий слева */
-      radial-gradient(circle at 85% 30%, rgba(76, 29, 149, 0.3), transparent 50%), /* Фиолетовый справа сверху */
-      linear-gradient(to bottom, #020617, #0f172a, #011242); /* Общий темный фон */
-    background-attachment: fixed; /* Фон стоит на месте при скролле */
+      radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.08), transparent 60%),
+      radial-gradient(circle at 0% 50%, rgba(30, 58, 138, 0.15), transparent 50%),
+      linear-gradient(to bottom, #0f172a, #1e293b, #0f172a);
+    background-attachment: fixed;
   }
   html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
   }
-
-  /* Улучшение скроллбара для современных браузеров */
+  
+  /* Скроллбар */
   ::-webkit-scrollbar {
     width: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.02);
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.25);
   }
-}
-
-/* Утилита для "стеклянных" рамок */
-@utility glass-border {
-    @apply border border-white/10;
-    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
 }
