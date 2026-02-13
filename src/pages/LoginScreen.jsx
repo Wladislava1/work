@@ -9,7 +9,7 @@ export default function LoginScreen({ onBack, onRegisterClick }) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.98 }}
       transition={{ duration: 0.3 }}
-      className="min-h-screen bg-gradient-to-br from-[#56b1ff] to-[#00396a] bg-fixed flex items-center justify-center px-5 font-manrope"
+      className="min-h-screen bg-gradient-to-br from-[#56b1ff] to-[#00396a] bg-fixed flex items-center justify-center px-5 font-sans"
     >
       <div className="w-full max-w-[420px] bg-white/20 backdrop-blur-2xl border border-white/30 rounded-[32px] p-8 md:p-10 shadow-2xl relative overflow-hidden">
         
