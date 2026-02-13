@@ -33,7 +33,11 @@ const ImageCarouselDesktop = ({ images, variant = 'default' }) => {
 
   if (!images || images.length === 0) return null;
 
-  // Контейнерные стили
+
+  const isProduct = variant === 'product';
+  const imageFit = isProduct ? 'object-contain' : 'object-cover';
+  const imageHeight = isProduct ? 'h-[500px]' : 'h-[400px]';
+  // Контейнерные стили (Ваш код)
   const containerClasses =
     variant === 'compact'
       ? 'w-full'
@@ -47,8 +51,9 @@ const ImageCarouselDesktop = ({ images, variant = 'default' }) => {
   return (
     <div className={containerClasses}>
       <div className={innerClasses}>
-        <div className="relative rounded-2xl overflow-hidden shadow-inner bg-gray-50 h-[400px] w-full">
-          {/* Изображение */}
+        {/* Применяем переменную imageHeight */}
+        <div className={`relative rounded-2xl overflow-hidden shadow-inner bg-gray-50 w-full ${imageHeight}`}>
+          
           <AnimatePresence initial={false} custom={direction}>
             <motion.img
               key={page}
@@ -58,27 +63,22 @@ const ImageCarouselDesktop = ({ images, variant = 'default' }) => {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{
-                x: { type: 'spring', stiffness: 300, damping: 30 },
-                opacity: { duration: 0.2 },
-              }}
+              transition={{ x: { type: 'spring', stiffness: 300, damping: 30 }, opacity: { duration: 0.2 } }}
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
               dragElastic={1}
               onDragEnd={(e, { offset, velocity }) => {
                 const swipe = swipePower(offset.x, velocity.x);
-                if (swipe < -SWIPE_CONFIDENCE_THRESHOLD) {
-                  paginate(1);
-                } else if (swipe > SWIPE_CONFIDENCE_THRESHOLD) {
-                  paginate(-1);
-                }
+                if (swipe < -SWIPE_CONFIDENCE_THRESHOLD) paginate(1);
+                else if (swipe > SWIPE_CONFIDENCE_THRESHOLD) paginate(-1);
               }}
-              className="absolute inset-0 w-full h-full object-cover object-center"
+              
+              className={`absolute inset-0 w-full h-full ${imageFit} object-center`}
               alt="Слайд интерфейса"
             />
           </AnimatePresence>
 
-          {/* Левая стрелка */}
+          {/* Левая стрелка (Ваш код) */}
           <button
             onClick={() => paginate(-1)}
             className="
@@ -94,7 +94,7 @@ const ImageCarouselDesktop = ({ images, variant = 'default' }) => {
             <ChevronLeft size={28} />
           </button>
 
-          {/* Правая стрелка */}
+          {/* Правая стрелка (Ваш код) */}
           <button
             onClick={() => paginate(1)}
             className="

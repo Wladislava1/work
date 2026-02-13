@@ -41,7 +41,7 @@ const Header = () => {
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'top-2 left-5 right-5 rounded-full bg-[#00396a]/90 text-white backdrop-blur-md border border-white/20 shadow-lg py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-          <Logo variant={isScrolled ? 'white' : 'dark'} />
+          <Logo variant={isScrolled ? 'white' : 'mt-0.5 dark'} size={isScrolled ? 'small' : 'normal'}/>
 
           {/* Desktop Menu */}
           <nav className="hidden lg:flex items-center gap-10">

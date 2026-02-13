@@ -38,10 +38,9 @@ export default function RegistrationScreen({ onBack, onLoginClick }) {
         <div className="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
         
         <div className="relative flex flex-col items-center">
-          <div className="flex items-center gap-2 text-white font-bold text-2xl mb-2">
-            Регистрация
+          <div className="flex items-center gap-2 text-white font-bold text-3xl mb-10">
+            Регистрация в SSPB ID
           </div>
-          <h2 className="text-white text-3xl font-black tracking-[0.05em] uppercase mb-5">SSPB ID</h2>
 
           <AnimatePresence mode="wait">
             {step === 1 ? (
@@ -88,11 +87,11 @@ export default function RegistrationScreen({ onBack, onLoginClick }) {
               </motion.div>
             ) : (
               <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="w-full space-y-6">
-                <div className="flex items-center gap-4 mb-4 bg-white/5 p-2 rounded-2xl border border-white/30 w-fit">
+                <div className="flex items-center gap-4 mb-4 bg-white/5 p-2 rounded-xl border border-white/30 w-fit">
                     <div className="flex items-center gap-2 text-white text-sm font-bold px-2">
                       {roleInfo.icon} {roleInfo.label}
                     </div>
-                    <button onClick={() => setStep(1)} className="bg-[#00396a]/30 hover:bg-white/40 text-white text-xs py-1 px-3 rounded-lg transition-all">
+                    <button onClick={() => setStep(1)} className="bg-[#00396a]/60 hover:bg-white/40 text-white text-xs py-1 px-3 rounded-md transition-all">
                       Изменить
                     </button>
                 </div>

@@ -25,20 +25,26 @@ const Home = () => {
   const tabsData = {
     'sb-arbitr': {
       title: "Страховой брокер для арбитражных управляющих",
-      features: ["Бесплатное использование сервиса", "Расчет стоимости по всем СК в одном месте"],
+      features: ["Бесплатное использование сервиса", "Расчет стоимости по всем страховым компаниям в одном месте"],
       link: "/sb-arbitr",
+      // Добавили внешнюю ссылку
+      externalLink: "https://xn--80abb2a1bcbn.xn--p1ai/", 
       images: [sbSlide1, sbSlide2]
     },
     'ai-referent': {
       title: "Анализ движения денежных средств и рисков",
       features: ["Формирование отчетов за минуту", "Обработка больших массивов данных"],
       link: "/ai-referent",
+      // Добавили внешнюю ссылку
+      externalLink: "https://ai-referent.ru/",
       images: [aiSlide1, aiSlide2, aiSlide3]
     },
     'au-publicator': {
       title: "Публикации в «Коммерсантъ» за минуты",
-      features: ["Бесплатное пользование сервисом", "Создание публикации за 7 шагов"],
+      features: ["Бесплатное ипользование сервиса", "Создание публикации за 7 шагов"],
       link: "/au-publicator",
+      // Добавили внешнюю ссылку
+      externalLink: "https://au-publicator.ru/",
       images: [auSlide1, auSlide2, auSlide3, auSlide4, auSlide5, auSlide6]
     }
   };
@@ -140,12 +146,14 @@ const Home = () => {
                 ))}
               </ul>
               <div>
-               <Link 
-                className="ggroup flex items-center justify-center w-full py-4 px-6 rounded-full text-semibold font-medium transition-all duration-300 bg-white text-[#00396a] hover:shadow-xl"
-              >
-                <span>Изучить продукт</span>
-                {/* Круглая иконка стрелки внутри кнопки */}
-              </Link>
+                <a 
+                  href={tabsData[activeTab].externalLink}
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-center w-full py-4 px-6 rounded-full font-semibold transition-all duration-300 bg-white text-[#00396a] hover:shadow-xl cursor-pointer"
+                >
+                  <span>Заполнить заявку</span>
+                </a>
               </div>
             </motion.div>
 
@@ -179,19 +187,20 @@ const Home = () => {
       </section>
 
      {/* Lead Form */}
-<section className="max-w-7xl bg-[#1976d2] py-20 mx-auto rounded-[40px] relative overflow-hidden shadow-xl">
+<section className="max-w-3xl bg-[#1976d2] py-20 mx-auto rounded-[40px] relative overflow-hidden shadow-xl">
   {/* Декоративный круг на фоне */}
   <div className="absolute top-0 right-0 w-96 h-96 bg-white opacity-10 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none blur-3xl"></div>
   
-  <div className="max-w-4xl mx-auto px-4 relative z-10"> {/* 👈 max-w-4xl и mx-auto */}
+  {/* Сузил контейнер до max-w-2xl (было 4xl), чтобы вертикальная форма смотрелась собранно */}
+  <div className="max-w-2xl mx-auto px-4 relative z-10"> 
     <div className="text-center mb-10">
       <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">Готовы начать?</h2>
       <p className="text-blue-100 text-lg">Оставьте заявку, и мы свяжемся с Вами для предоставления доступа</p>
     </div>
     
     <form onSubmit={handleFormSubmit} className="w-full">
-      {/* Грид на 4 колонки: Имя, Телефон, Email, Кнопка */}
-      <div className="grid md:grid-cols-4 gap-4 mb-6">
+      {/* Вертикальный стек полей (flex-col) вместо сетки */}
+      <div className="flex flex-col gap-4 mb-8">
         <input 
           name="name" 
           required 
@@ -214,26 +223,50 @@ const Home = () => {
           placeholder="Email" 
         />
         
-        {/* Кнопка: темно-синяя для контраста с голубым фоном */}
-        <Button type="submit" className="w-full bg-[#00396a] text-[#00396a] hover:text-white hover:bg-[#002a4d] transition-all duration-300">
-          Получить доступ
-        </Button>
+        {/* Кнопка: w-auto (по ширине текста + отступы), по центру (self-center) */}
+        
       </div>
 
-      {/* Чекбокс снизу по центру */}
-      <div className="flex justify-center items-center gap-3">
-        <div className="relative flex items-start">
-          <input 
-            id="privacy" 
-            type="checkbox" 
-            required 
-            className="mt-1 w-5 h-5 text-[#00396a] bg-white border-transparent rounded focus:ring-white focus:ring-offset-0 cursor-pointer" 
-          />
+      {/* Блок чекбоксов */}
+      <div className="flex flex-col items-start gap-3 pl-2"> {/* pl-2 для визуального выравнивания с закругленными полями */}
+        
+        {/* 1. Обязательная галочка: Обработка ПД */}
+        <div className="flex items-start gap-3">
+          <div className="relative flex items-start">
+            <input 
+              id="privacy" 
+              name="privacy"
+              type="checkbox" 
+              required 
+              className="w-5 h-5 text-[#00396a] bg-white rounded focus:ring-white focus:ring-offset-0 cursor-pointer" 
+            />
+          </div>
+          <label htmlFor="privacy" className="text-md text-white cursor-pointer hover:text-white transition-colors text-left leading-tight">
+            Я согласен на обработку персональных данных
+          </label>
         </div>
-        <label htmlFor="privacy" className="text-sm text-blue-100 cursor-pointer hover:text-white transition-colors">
-          Я согласен на обработку персональных данных
-        </label>
+
+        {/* 2. Необязательная галочка: Рассылка */}
+        <div className="flex items-start gap-3">
+          <div className="relative flex items-start">
+            <input 
+              id="subscribe" 
+              name="subscribe"
+              type="checkbox" 
+              className="w-5 h-5 text-[#00396a] bg-white rounded focus:ring-white focus:ring-offset-0 cursor-pointer" 
+            />
+          </div>
+          <label htmlFor="subscribe" className="text-md text-white cursor-pointer hover:text-white transition-colors text-left leading-tight">
+            Я согласен получать рассылку о скидках и новых функциях
+          </label>
+        </div>
+                
       </div>
+      <div className="flex justify-center mt-8">
+            <Button variant="custom" className="ggroup flex items-center justify-center max-w-auto py-4 px-30 rounded-full text-semibold font-medium transition-all duration-300 bg-white text-[#00396a] hover:shadow-xl">
+            Получить доступ
+        </Button>
+        </div>
     </form>
   </div>
 </section>
@@ -242,20 +275,26 @@ const Home = () => {
 };
 
 const RoleCard = ({ title, icon: Icon, points }) => (
-    <div className="bg-white p-8 rounded-3xl border border-gray-100 flex flex-col h-full  shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col">
+    <div className="bg-white p-8 rounded-3xl border border-gray-100 flex flex-col h-full shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
         <div className="mb-6 bg-blue-50 w-14 h-14 rounded-2xl border border-[#00396a]/40 flex items-center justify-center text-primary">
             <Icon size={28} />
         </div>
         <h3 className="text-2xl text-[#00396a] md:text-3xl font-bold mb-6 leading-tight">{title}</h3>
-        <ul className="space-y-3 mb-8 flex-grow">
+        
+        <ul className="space-y-4 mb-8 flex-grow">
             {points.map((p, i) => (
-                <li key={i} className="text-xl text-[#00396a] mb-2lex-grow">
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0"></span>
-                    {p}
+                // Добавил 'flex', 'gap-3' и убрал лишний span с точкой
+                <li key={i} className="flex items-start gap-3 text-lg md:text-xl text-[#00396a]">
+                    {/* shrink-0 запрещает иконке сжиматься, mt-1.5 выравнивает её оптически по первой строке текста */}
+                    <CheckCircle className="text-[#00396a] shrink-0 mt-1" size={20} />
+                    <span className="leading-tight">{p}</span>
                 </li>
             ))}
         </ul>
-        <Button to="https://id.sspb.ru" variant="custom" className="bg-[#00396a] text-white hover:shadow-lg">Начать сейчас</Button>
+        
+        <Button to="/login" variant="custom" className="bg-[#00396a] text-white hover:shadow-lg w-full justify-center">
+            Начать сейчас
+        </Button>
     </div>
 );
 

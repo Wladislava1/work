@@ -35,7 +35,7 @@ const Footer = () => {
             {/* Ссылки на реестры */}
             <div className="mt-6 flex flex-col gap-3">
                 <a 
-                    href="https://www.gosuslugi.ru/itorgs" 
+                    href="https://pd.rkn.gov.ru/operators-registry/operators-list/?id=77-20-017830" 
                     target="_blank" 
                     rel="noreferrer"
                     className="text-base text-blue-100 hover:text-white transition-colors border-b border-transparent hover:border-white/50 w-fit"
