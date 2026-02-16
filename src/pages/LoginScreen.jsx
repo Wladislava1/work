@@ -66,7 +66,7 @@ export default function LoginScreen({ onBack, onRegisterClick }) {
               Нет аккаунта?{' '}
               <button 
                 onClick={onRegisterClick}
-                className="text-white font-black hover:text-[#56b1ff] transition-colors"
+                className="text-white font-bold hover:text-[#56b1ff] transition-colors"
               >
                 Зарегистрироваться
               </button>
