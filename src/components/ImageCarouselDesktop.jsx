@@ -33,25 +33,30 @@ const ImageCarouselDesktop = ({ images, variant = 'default' }) => {
 
   if (!images || images.length === 0) return null;
 
-
   const isProduct = variant === 'product';
   const imageFit = isProduct ? 'object-contain' : 'object-cover';
-  const imageHeight = isProduct ? 'h-[500px]' : 'h-[400px]';
-  // Контейнерные стили (Ваш код)
+  // 1. Уменьшили высоту изображения для продукта до 400px
+  const imageHeight = isProduct ? 'h-[450px]' : 'h-[400px]';
+
+  // 2. Уплотнили внешние отступы (my-6) для варианта product
   const containerClasses =
     variant === 'compact'
       ? 'w-full'
+      : variant === 'product'
+      ? 'w-full max-w-5xl mx-auto px-4 my-6'
       : 'w-full max-w-6xl mx-auto px-4 my-12';
 
+  // 3. Уменьшили внутренний отступ рамки (p-6) для варианта product
   const innerClasses =
     variant === 'compact'
       ? 'bg-white rounded-[40px] shadow-soft p-3 relative border border-white/50'
+      : variant === 'product'
+      ? 'bg-white rounded-[40px] shadow-soft p-6 relative border border-white/50'
       : 'bg-white rounded-[40px] shadow-soft p-10 relative border border-white/50';
 
   return (
     <div className={containerClasses}>
       <div className={innerClasses}>
-        {/* Применяем переменную imageHeight */}
         <div className={`relative rounded-2xl overflow-hidden shadow-inner bg-gray-50 w-full ${imageHeight}`}>
           
           <AnimatePresence initial={false} custom={direction}>
@@ -72,13 +77,11 @@ const ImageCarouselDesktop = ({ images, variant = 'default' }) => {
                 if (swipe < -SWIPE_CONFIDENCE_THRESHOLD) paginate(1);
                 else if (swipe > SWIPE_CONFIDENCE_THRESHOLD) paginate(-1);
               }}
-              
               className={`absolute inset-0 w-full h-full ${imageFit} object-center`}
               alt="Слайд интерфейса"
             />
           </AnimatePresence>
 
-          {/* Левая стрелка (Ваш код) */}
           <button
             onClick={() => paginate(-1)}
             className="
@@ -94,7 +97,6 @@ const ImageCarouselDesktop = ({ images, variant = 'default' }) => {
             <ChevronLeft size={28} />
           </button>
 
-          {/* Правая стрелка (Ваш код) */}
           <button
             onClick={() => paginate(1)}
             className="

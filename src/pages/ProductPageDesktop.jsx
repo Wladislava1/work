@@ -190,7 +190,7 @@ const ProductPageDesktop = () => {
                 </section>
             )}
             {/* How it works */}
-            <section id="how" className="bg-[#1976d2] py-10 rounded-[40px] shadow-sm mx-4 mb-20">
+            <section id="how" className="bg-[#1976d2] py-8 rounded-[40px] shadow-sm mx-4 mb-20">
                 <div className="max-w-7xl mx-auto px-4 text-center mb-12">
                     <h2 className="text-2xl md:text-4xl font-extrabold text-center text-white mb-8">Как это работает?</h2>
                     <p className="text-2xl text-neutral mb-10 max-w-5xl text-white mx-auto whitespace-pre-line">{data.howItWorks}</p>
@@ -215,13 +215,13 @@ const ProductPageDesktop = () => {
             </section>
 
             {/* Form (Horizontal Grid) */}
-            <section className="max-w-3xl bg-[#1976d2] py-20 mx-auto rounded-[40px] relative overflow-hidden shadow-xl">
+            <section className="max-w-3xl bg-[#1976d2] py-10 mx-auto rounded-[40px] relative overflow-hidden shadow-xl">
   {/* Декоративный круг на фоне */}
   <div className="absolute top-0 right-0 w-96 h-96 bg-white opacity-10 rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none blur-3xl"></div>
   
   {/* Сузил контейнер до max-w-2xl (было 4xl), чтобы вертикальная форма смотрелась собранно */}
   <div className="max-w-2xl mx-auto px-4 relative z-10"> 
-    <div className="text-center mb-10">
+    <div className="text-center mb-7">
       <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">Готовы начать?</h2>
       <p className="text-blue-100 text-lg">Оставьте заявку, и мы свяжемся с Вами для предоставления доступа</p>
     </div>

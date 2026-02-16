@@ -208,10 +208,10 @@ const ProductPageMobile = () => {
             </section>
 
             {/* Mobile Form (Вертикальная) */}
-            <section className="bg-[#1976d2] py-12 mx-4 rounded-[32px] shadow-xl relative overflow-hidden">
+            <section className="bg-[#1976d2] py-6 mx-4 rounded-[32px] shadow-xl relative overflow-hidden">
     <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
     <div className="relative z-10 px-6">
-        <div className="text-center mb-8">
+        <div className="text-center mb-5">
             <h2 className="text-2xl font-extrabold text-white mb-3">Готовы начать?</h2>
             <p className="text-blue-100">Оставьте заявку, и мы свяжемся с Вами</p>
         </div>
@@ -221,21 +221,21 @@ const ProductPageMobile = () => {
                 name="name" 
                 required 
                 type="text" 
-                className="w-full px-5 py-4 rounded-2xl bg-white text-gray-900 placeholder-gray-500 outline-none focus:ring-4 focus:ring-white/30 transition-all shadow-md" 
+                className="w-full px-5 py-4 rounded-full bg-white text-gray-900 placeholder-gray-500 outline-none focus:ring-4 focus:ring-white/30 transition-all shadow-md" 
                 placeholder="Ваше Имя" 
             />
             <input 
                 name="phone" 
                 required 
                 type="tel" 
-                className="w-full px-5 py-4 rounded-2xl bg-white text-gray-900 placeholder-gray-500 outline-none focus:ring-4 focus:ring-white/30 transition-all shadow-md" 
+                className="w-full px-5 py-4 rounded-full bg-white text-gray-900 placeholder-gray-500 outline-none focus:ring-4 focus:ring-white/30 transition-all shadow-md" 
                 placeholder="Телефон" 
             />
             <input 
                 name="email" 
                 required 
                 type="email" 
-                className="w-full px-5 py-4 rounded-2xl bg-white text-gray-900 placeholder-gray-500 outline-none focus:ring-4 focus:ring-white/30 transition-all shadow-md" 
+                className="w-full px-5 py-4 rounded-full bg-white text-gray-900 placeholder-gray-500 outline-none focus:ring-4 focus:ring-white/30 transition-all shadow-md" 
                 placeholder="Email" 
             />
             
