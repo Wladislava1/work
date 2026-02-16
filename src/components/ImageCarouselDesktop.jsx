@@ -36,7 +36,7 @@ const ImageCarouselDesktop = ({ images, variant = 'default' }) => {
   const isProduct = variant === 'product';
   const imageFit = isProduct ? 'object-contain' : 'object-cover';
   // 1. Уменьшили высоту изображения для продукта до 400px
-  const imageHeight = isProduct ? 'h-[450px]' : 'h-[400px]';
+  const imageHeight = isProduct ? 'h-[400px]' : 'h-[400px]';
 
   // 2. Уплотнили внешние отступы (my-6) для варианта product
   const containerClasses =

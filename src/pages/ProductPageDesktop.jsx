@@ -191,9 +191,9 @@ const ProductPageDesktop = () => {
             )}
             {/* How it works */}
             <section id="how" className="bg-[#1976d2] py-8 rounded-[40px] shadow-sm mx-4 mb-20">
-                <div className="max-w-7xl mx-auto px-4 text-center mb-12">
-                    <h2 className="text-2xl md:text-4xl font-extrabold text-center text-white mb-8">Как это работает?</h2>
-                    <p className="text-2xl text-neutral mb-10 max-w-5xl text-white mx-auto whitespace-pre-line">{data.howItWorks}</p>
+                <div className="max-w-7xl mx-auto px-4 text-center mb-5">
+                    <h2 className="text-2xl md:text-4xl font-extrabold text-center text-white mb-4">Как это работает?</h2>
+                    <p className="text-2xl text-neutral max-w-5xl text-white mx-auto whitespace-pre-line">{data.howItWorks}</p>
                 </div>
                 <ImageCarousel images={data.carouselImages} fit="contain" variant="product"/>
                 <div className="text-center mt-8">
