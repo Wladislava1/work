@@ -20,7 +20,7 @@ const Logo = ({ variant = 'dark', size = 'normal' }) => {
         className={`${sizeClasses[size]} w-auto transition-all duration-300`}
       />
       <span className="text-2xl font-extrabold tracking-tight text-secondary">
-        АО «ССПБ»
+        ССПБ ID
       </span>
     </Link>
   );

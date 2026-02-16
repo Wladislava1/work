@@ -142,7 +142,7 @@ export default function RegistrationScreen({ onBack, onLoginClick }) {
 function InputGroup({ label, placeholder, type = "text", value, readOnly }) {
   return (
     <div className="space-y-1">
-      <label className="text-white font-medium ml-1 text-xs uppercase tracking-wider opacity-70">{label}</label>
+      <label className="text-white font-medium ml-1 text-xs tracking-wider opacity-70">{label}</label>
       <input
         type={type}
         defaultValue={value}

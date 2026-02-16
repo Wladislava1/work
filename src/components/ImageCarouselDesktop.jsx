@@ -82,11 +82,11 @@ const ImageCarouselDesktop = ({ images, variant = 'default' }) => {
           <button
             onClick={() => paginate(-1)}
             className="
-              absolute left-4 top-1/2 -translate-y-1/2
+              absolute left-2 top-1/2 -translate-y-1/2
               flex items-center justify-center
               w-12 h-12 rounded-full
-              bg-[#c0dcf7]/90 backdrop-blur-sm
-              text-[#00396a] hover:bg-[#00396a] hover:text-white
+              bg-[#c0dcf7]/50 backdrop-blur-sm
+              text-[#00396a] hover:bg-[#00396a]/50 hover:text-white
               transition-all duration-200 shadow-lg
               z-20 hover:scale-110
             "
@@ -98,11 +98,11 @@ const ImageCarouselDesktop = ({ images, variant = 'default' }) => {
           <button
             onClick={() => paginate(1)}
             className="
-              absolute right-4 top-1/2 -translate-y-1/2
+              absolute right-2 top-1/2 -translate-y-1/2
               flex items-center justify-center
               w-12 h-12 rounded-full
-              bg-[#c0dcf7]/90 backdrop-blur-sm
-              text-[#00396a] hover:bg-[#00396a] hover:text-white
+              bg-[#c0dcf7]/50 backdrop-blur-sm
+              text-[#00396a] hover:bg-[#00396a]/50 hover:text-white
               transition-all duration-200 shadow-lg
               z-20 hover:scale-110
             "

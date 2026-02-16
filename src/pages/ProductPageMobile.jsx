@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import ImageCarousel from '../components/ImageCarousel';
 import Button from '../components/Button';
-import { CheckCircle } from 'lucide-react';
+import { SquareCheckBig } from 'lucide-react';
 
 // ТЕ ЖЕ ИМПОРТЫ (ДУБЛИРОВАНИЕ)
 import sbSlide1 from '../assets/lk_blur_1.jpg';
@@ -37,13 +37,14 @@ const ProductPageMobile = () => {
                 heroImage: 'https://placehold.co/800x600/e2e8f0/1e293b?text=SB+Hero',
                 siteUrl: 'https://сбарбитр.рф/',
                 nameButton: "Начать работу",
+                nameButtonHeader: "Получить расчет",
                 howItWorks: 'Заполните одну заявку и получите расчет стоимости сразу по всем страховым компаниям. Стоимость договора такая же, как в страховой компании.',
-                carouselImages: [sbSlide1, sbSlide2],
+                carouselImages: [sbSlide2, sbSlide1],
                 features: [
                     { title: "Индивидуально", text: "Персональный менеджер поможет в оформлении необходимых документов в кратчайшие сроки." },
-                    { title: "Удобно", text: "Вы получите расчет стоимости договора страхования по всем СК, аккредитованным при Вашем СРО." },
-                    { title: "Выгодно", text: "Мы подберем наиболее выгодный для Вас вариант." },
-                    { title: "Прозрачно", text: "Стоимость договора страхования такая же, как в страховой компании." }
+                    { title: "Быстро", text: "Вы получите расчет стоимости договора страхования сразу по всем СК, аккредитованным при Вашем СРО." },
+                    { title: "Выгодно", text: "Мы подберем наиболее подходящий для Вас вариант" },
+                    { title: "Без переплат", text: "Стоимость договора страхования такая же, как в страховой компании." }
                 ]
             },
             'ai-referent': {
@@ -53,43 +54,50 @@ const ProductPageMobile = () => {
                 heroImage: 'https://placehold.co/800x600/e2e8f0/1e293b?text=AI+Hero',
                 siteUrl: 'https://ai-referent.ru',
                 nameButton: "Загрузить выписки",
+                nameButtonHeader: "Проанализировать",
                 howItWorks: 'Загрузите банковские выписки предприятия и получите персонализированный дашборд \nс информацией по каждому платежу. Сервис автоматически выявит риски \nи сформирует отчетность.',
                 carouselImages: [aiSlide1, aiSlide2, aiSlide3],
                 features: [
                     { title: "Экономия времени", text: "Автоматический анализ и отчеты за минуту." },
                     { title: "«Умный» анализ", text: " Быстрое выявление подозрительных сделок и рисков доначисления налогов." },
-                    { title: "Минимизация ошибок", text: "На 99,9% меньше ошибок без ручной обработки." },
-                    { title: "Безопасность", text: "Обработка данных на собственных серверах, защищённых по ISO 27001, исключает возможность «утечек»." }
+                    { title: "Минимизация ошибок", text: "Меньше ошибок благодаря отказу от “ручной” обработки документов" },
+                    { title: "Безопасность данных", text: "Обработка данных на собственных серверах, защищённых по ISO 27001, исключает возможность «утечек»." }
                 ]
             },
             'au-publicator': {
                 title: 'АУ-Публикатор',
-                slogan: 'Не мучайтесь с публикациями АУ-Публикуйте!',
-                desc: 'Первый бесплатный сервис для автоматизированной публикации сообщений в «Коммерсантъ».',
+                slogan: 'Не мучайтесь с публикациями в “Ъ”',
+                desc: 'Первый бесплатный сервис для автоматизированной публикации сообщений в “Коммерсантъ” за считанные минуты.',
                 heroImage: 'https://placehold.co/800x600/e2e8f0/1e293b?text=Publicator+Hero',
                 siteUrl: 'https://au-publicator.ru',
                 nameButton: "Начать работу",
+                nameButtonHeader: "Создать публикацию",
                 howItWorks: 'Создайте заявку всего за 7 шагов: от выбора типа публикации до проверки сгенерированного текста.',
                 carouselImages: [auSlide1, auSlide2, auSlide3, auSlide4, auSlide5, auSlide6],
                 features: [
-                    { title: "Бесплатно", text: "Оплачивайте только размещение в «Ъ»." },
-                    { title: "Автозаполнение", text: "Введите ИНН — остальное загрузится само." },
-                    { title: "Юридически верно", text: "Минимизация рисков ошибок." },
-                    { title: "Бонусы", text: "Баллы за публикации для других сервисов." }
+                    { title: "Экономия времени", text: "Оплачивайте только размещение в «Ъ»." },
+                    { title: "Автоматизация", text: "Введите ИНН — остальное загрузится само." },
+                    { title: "Минимизация рисков", text: "Минимизация рисков ошибок." },
+                    { title: "Выгодно", text: "Баллы за публикации для других сервисов." }
                 ]
             }
     };
 
     const aboutData = {
         insurance: {
-            title: "8 лет успешного сотрудничества",
-            subtitle: "Мы помогаем 30+ СРО взаимодействовать со страховыми компаниями.",
-            list: ["ТИТ", "Британский Страховой Дом", "Международная страховая группа", "Аскор", "НКО ПОВС «СПЕКТР»", "ОВС «Сириус»"]
+            title: "8 лет успешного сотрудничества с ведущими страховыми компаниями",
+            subtitle: "Мы помогаем более 30 СРО взаимодействовать со страховыми компаниями, не увеличивая стоимость договора страхования.",
+            list: [
+                "ТИТ", "Британский Страховой Дом", "Международная страховая группа", "Аскор", "НКО ПОВС «СПЕКТР»", "ОВС «Сириус»"
+            ]
         },
         sro: {
-            title: "Работаем с крупнейшими СРО",
+            title: "Работаем с крупнейшими СРО арбитражных управляющих",
             subtitle: "Нам доверяют ведущие ассоциации и союзы по всей России.",
-            list: ["САМРО «Ассоциация антикризисных управляющих»", "Ассоциация СОАУ «Меркурий»", "Ассоциация СРО ОАУ «Лидер»", "Союз АУ «Возрождение»", "Союз АУ «Созидание»", "ААУ «Арсенал»", "ААУ «ЦФОП АПК»", "ПАУ ЦФО", "ААУ «СИРИУС»"]
+            list: [
+                "САМРО «Ассоциация антикризисных управляющих»", "Ассоциация СОАУ «Меркурий»", "Ассоциация СРО ОАУ «Лидер»",
+                "Союз АУ «Возрождение»", "Союз АУ «Созидание»", "ААУ «Арсенал»", "ААУ «ЦФОП АПК»", "ПАУ ЦФО", "ААУ «СИРИУС»"
+            ]
         }
     };
 
@@ -105,14 +113,13 @@ const ProductPageMobile = () => {
                     <h1 className="text-2xl font-extrabold mb-4 leading-tight text-[#00396a]">{data.slogan}</h1>
                     <p className="text-lg text-neutral mb-8">{data.desc}</p>
                     <div className="flex flex-col gap-3">
-                        <Button variant="custom" className="bg-[#00396a] text-white w-full py-4 text-lg" href={data.siteUrl} target="_blank">Попробовать</Button>
+                        <Button variant="custom" className="bg-[#00396a] text-white w-full py-4 text-lg" href={data.siteUrl} target="_blank">{data.nameButtonHeader}</Button>
                         <Button variant="custom" className="bg-white text-[#00396a] border-2 border-gray-100 w-full py-4 text-lg" onClick={() => document.getElementById('how').scrollIntoView({ behavior: 'smooth' })}>Как это работает</Button>
                     </div>
                 </div>
             </section>
 
-            {/* Mobile "О нас" (Только для СБ Арбитр) */}
-            {/* Блок "О нас" (Только для СБ Арбитр - MOBILE) */}
+
 {/* Блок "О нас" (Только для СБ Арбитр - MOBILE) */}
 {productId === 'sb-arbitr' && (
     <section className="mx-4 mb-12">
@@ -125,7 +132,7 @@ const ProductPageMobile = () => {
                         onClick={() => setAboutTab('insurance')} 
                         className={`flex-1 py-3 rounded-full text-xs font-bold transition-all text-center ${aboutTab === 'insurance' ? 'bg-[#00396a] text-white shadow-md' : 'text-gray-600'}`}
                     >
-                        Страховые
+                        Страховые компании
                     </button>
                     <button 
                         onClick={() => setAboutTab('sro')} 
@@ -142,25 +149,27 @@ const ProductPageMobile = () => {
                     8 лет успешного сотрудничества <br />
                     с ведущими страховыми компаниями и СРО
                 </h2>
-                <p className="text-sm text-neutral leading-relaxed">
-                    Мы помогаем 30+ СРО взаимодействовать со страховыми компаниями, не увеличивая стоимость договора страхования.
+                <p className="text-lg text-neutral leading-relaxed max-w-lg">
+                    Мы помогаем 30+ СРО взаимодействовать со страховыми компаниями,{' '}
+                    <span className="font-bold">не увеличивая стоимость договора страхования.</span>
                 </p>
             </div>
 
             {/* 3. Список (БЕЗ скролла, полный список) */}
-            <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-inner flex flex-col">
+            <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-inner flex flex-col h-[400px]">
                 
-                {/* Заголовок списка */}
-                <h3 className="text-lg font-bold text-[#00396a] mb-4 px-1 border-b border-gray-100 pb-3">
-                    {aboutTab === 'insurance' ? 'Страховые компании' : 'Партнеры СРО'}
+                {/* Заголовок списка (shrink-0 чтобы не сжимался) */}
+                <h3 className="text-lg font-bold text-[#00396a] mb-4 px-1 border-b border-gray-100 pb-3 shrink-0">
+                    {aboutTab === 'insurance' ? 'Страховые компании — партнёры' : 'СРО — партнёры'}
                 </h3>
 
-                {/* Список элементов (в одну колонку) */}
-                <div className="flex flex-col gap-3">
+                {/* Список элементов (в одну колонку со скроллом) */}
+                <div className="flex flex-col gap-3 overflow-y-auto custom-scrollbar pr-2 flex-grow">
                     {aboutData[aboutTab].list.map((item, idx) => (
-                        <div key={idx} className="bg-gray-50 p-3 rounded-xl border border-gray-100 flex items-center gap-3 shadow-sm">
+                        <div key={idx} className="bg-gray-50 p-3 rounded-xl border border-gray-100 flex items-center gap-3 shadow-sm hover:shadow-md transition-all">
                             <div className="w-8 h-8 rounded-full bg-[#c0dcf7] flex items-center justify-center shrink-0">
-                                <CheckCircle size={14} className="text-[#00396a]" />
+                                {/* Используем новую квадратную галочку */}
+                                <SquareCheckBig size={16} className="text-[#00396a]" />
                             </div>
                             <span className="text-xs font-bold text-[#00396a] leading-snug">{item}</span>
                         </div>

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom'; // Добавил Link для работы кнопок
 import Button from '../components/Button';
 import ImageCarousel from '../components/ImageCarousel';
-import { Shield, BarChart, FileText, CheckCircle, Users, Briefcase, Award, ArrowRight } from 'lucide-react'; // Добавил ArrowRight
+import { Shield, BarChart, FileText, SquareCheckBig, Users, Briefcase, Award, ArrowRight } from 'lucide-react';// Добавил ArrowRight
 import sbSlide1 from '../assets/lk_blur_1.jpg';
 import sbSlide2 from '../assets/lk_blur_2.jpg';
 
@@ -25,11 +25,11 @@ const Home = () => {
   const tabsData = {
     'sb-arbitr': {
       title: "Страховой брокер для арбитражных управляющих",
-      features: ["Бесплатное использование сервиса", "Расчет стоимости по всем страховым компаниям в одном месте"],
+      features: ["Бесплатное использование сервиса", "Быстрый расчет стоимости по всем страховым компаниям в одном месте"],
       link: "/sb-arbitr",
       // Добавили внешнюю ссылку
       externalLink: "https://xn--80abb2a1bcbn.xn--p1ai/", 
-      images: [sbSlide1, sbSlide2]
+      images: [sbSlide2, sbSlide1]
     },
     'ai-referent': {
       title: "Анализ движения денежных средств и рисков",
@@ -40,8 +40,8 @@ const Home = () => {
       images: [aiSlide1, aiSlide2, aiSlide3]
     },
     'au-publicator': {
-      title: "Публикации в «Коммерсантъ» за минуты",
-      features: ["Бесплатное ипользование сервиса", "Создание публикации за 7 шагов"],
+      title: "Публикации в «КоммерсантЪ» за считанные минуты без юридических рисков",
+      features: ["Бесплатное использование сервиса", "Создание публикации за 7 шагов"],
       link: "/au-publicator",
       // Добавили внешнюю ссылку
       externalLink: "https://au-publicator.ru/",
@@ -75,16 +75,35 @@ const Home = () => {
         {/* Hero Cards (UPDATED) */}
         <div className="grid md:grid-cols-3 gap-8">
           {[
-            { title: "СБ Арбитр", desc: "Страхование ответственности АУ", icon: Shield, link: "/sb-arbitr" },
-            { title: "AI Referent", desc: "Анализ банковских выписок и рисков", icon: BarChart, link: "/ai-referent" },
-            { title: "АУ Публикатор", desc: "Автоматическая генерация сообщений в «Ъ»", icon: FileText, link: "/au-publicator" },
+            { 
+              title: "СБ Арбитр", 
+              desc: "Страхование ответственности АУ", 
+              icon: Shield, 
+              link: "/sb-arbitr",
+              gradient: "from-[#2E8484] to-[#7CE2E2]" // Новые цвета СБ Арбитр
+            },
+            { 
+              title: "AI Referent", 
+              desc: "Анализ банковских выписок \nи рисков", 
+              icon: BarChart, 
+              link: "/ai-referent",
+              gradient: "from-[#9023C6] to-[#BB7FE5]" // Новые цвета AI Referent
+            },
+            { 
+              title: "АУ-Публикатор", 
+              desc: "Автоматическая генерация сообщений в «Ъ»", 
+              icon: FileText, 
+              link: "/au-publicator",
+              gradient: "from-[#2600E4] to-[#D30214]" // Новые цвета АУ Публикатор
+            },
           ].map((card, idx) => (
             <motion.div 
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
-              className="bg-gradient-to-br from-[#1976d2] to-[#00396a] p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full text-white"
+              // Используем динамический градиент из данных карточки
+              className={`bg-gradient-to-br ${card.gradient} p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full text-white`}
             >
               {/* Иконка в белом круге с прозрачностью */}
               <div className="w-14 h-14 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-6 border border-white/20">
@@ -92,18 +111,15 @@ const Home = () => {
               </div>
               
               <h3 className="text-3xl font-bold mb-3">{card.title}</h3>
-              <p className="text-xl text-white mb-8 flex-grow">{card.desc}</p>
+              <p className="text-xl text-white mb-8 flex-grow whitespace-pre-line">{card.desc}</p>
               
-              {/* Кнопка "Подробнее о продукте" */}
+              {/* Обновленная кнопка "Подробнее" */}
+              {/* mx-auto центрирует кнопку, px-8 задает компактную ширину по тексту */}
               <Link 
                 to={card.link}
-                className="group flex items-center justify-between w-full py-1 pl-6 pr-1 rounded-full border border-white text-white text-md font-medium transition-all duration-300 hover:bg-white hover:text-[#00396a] hover:border-white hover:shadow-lg"
+                className="mx-auto flex items-center justify-center px-8 py-2.5 rounded-full border border-white text-white text-md font-medium transition-all duration-300 hover:bg-white hover:text-[#00396a] hover:shadow-lg"
               >
-                <span>Подробнее о продукте</span>
-                {/* Круглая иконка стрелки внутри кнопки */}
-                <div className="w-11 h-11 rounded-full bg-white/40 flex items-center justify-center transition-colors duration-300 group-hover:bg-[#00396a]/50 group-hover:text-white">
-                    <ArrowRight size={16} />
-                </div>
+                Подробнее
               </Link>
             </motion.div>
           ))}
@@ -112,7 +128,7 @@ const Home = () => {
 
       <section id="ecosystem" className="bg-[#1976d2] py-20 rounded-[40px] mb-20 shadow-sm mx-4">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-extrabold text-center text-white mb-12">Экосистема продуктов</h2>
+          <h2 className="text-2xl md:text-4xl font-extrabold text-center text-white mb-12">Экосистема продуктов ССПБ ID</h2>
           
           <div className="flex justify-center mb-12 flex-wrap gap-2">
             {Object.keys(tabsData).map((key) => (
@@ -123,7 +139,7 @@ const Home = () => {
                   activeTab === key ? 'bg-[#00396a] text-white shadow-lg' : 'bg-gray-100 text-neutral hover:bg-gray-200'
                 }`}
               >
-                {key === 'sb-arbitr' ? 'СБ Арбитр' : key === 'ai-referent' ? 'AI Referent' : 'АУ Публикатор'}
+                {key === 'sb-arbitr' ? 'СБ Арбитр' : key === 'ai-referent' ? 'AI Referent' : 'АУ-Публикатор'}
               </button>
             ))}
           </div>
@@ -139,9 +155,12 @@ const Home = () => {
               <h3 className="text-2xl text-[#00396a] md:text-3xl font-bold mb-6 leading-tight">{tabsData[activeTab].title}</h3>
               <ul className="space-y-4 mb-10">
                 {tabsData[activeTab].features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <CheckCircle className="text-[#00396a] shrink-0 mt-1" size={20} />
-                    <span className="text-xl text-[#00396a] text-lg text-[#00396a]">{feature}</span>
+                  <li 
+                    key={i} 
+                    className="flex items-start gap-3 transition-all duration-300 transform hover:translate-x-2 hover:drop-shadow-md cursor-default"
+                  >
+                    <SquareCheckBig className="text-[#00396a] shrink-0 mt-1" size={20} />
+                    <span className="text-lg text-[#00396a]">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -166,7 +185,7 @@ const Home = () => {
 
       {/* Roles Section */}
       <section className="max-w-7xl mx-auto px-4 mb-20">
-        <h2 className="text-2xl md:text-4xl font-extrabold text-center text-[#00396a] mb-12">Решения для каждой роли</h2>
+        <h2 className="text-2xl md:text-4xl font-extrabold text-center text-[#00396a] mb-12">Экосистема ССПБ ID — это готовые решения для каждого</h2>
         <div className="grid md:grid-cols-3 gap-8">
             <RoleCard 
                 title="Арбитражным управляющим" 
@@ -286,7 +305,7 @@ const RoleCard = ({ title, icon: Icon, points }) => (
                 // Добавил 'flex', 'gap-3' и убрал лишний span с точкой
                 <li key={i} className="flex items-start gap-3 text-lg md:text-xl text-[#00396a]">
                     {/* shrink-0 запрещает иконке сжиматься, mt-1.5 выравнивает её оптически по первой строке текста */}
-                    <CheckCircle className="text-[#00396a] shrink-0 mt-1" size={20} />
+                    <SquareCheckBig className="text-[#00396a] shrink-0 mt-1" size={20} />
                     <span className="leading-tight">{p}</span>
                 </li>
             ))}
