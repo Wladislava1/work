@@ -33,8 +33,9 @@ export default function RegistrationScreen({ onBack, onLoginClick }) {
       exit={{ opacity: 0, scale: 0.98 }}
       className="min-h-screen bg-gradient-to-br from-[#56b1ff] to-[#00396a] bg-fixed flex items-center justify-center px-5 py-10 font-manrope"
     >
-      <div className={`w-full ${step === 1 ? 'max-w-[460px]' : 'max-w-[900px]'} bg-white/20 backdrop-blur-2xl border border-white/30 rounded-[40px] p-8 md:p-10 shadow-2xl relative overflow-hidden transition-all duration-500`}>
-        
+      <div className={`w-full ${step === 1 ? 'max-w-[460px]' : 'max-w-[900px]'} 
+        bg-white/20 backdrop-blur-2xl border border-white/30 rounded-[40px] 
+        p-8 md:p-10 shadow-2xl relative transition-all duration-500 mb-16`}>
         <div className="absolute -top-20 -right-20 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
         
         <div className="relative flex flex-col items-center">
@@ -133,6 +134,9 @@ export default function RegistrationScreen({ onBack, onLoginClick }) {
           <button onClick={onBack} className="mt-8 text-white/60 hover:text-white text-sm transition block w-full">
              ← На главную
           </button>
+        </div>
+        <div className="absolute top-[calc(100%+20px)] left-1/2 -translate-x-1/2 text-white/30 text-[10px] uppercase whitespace-nowrap tracking-wider">
+            Защищено SSPB ID © 2026
         </div>
       </div>
     </motion.div>

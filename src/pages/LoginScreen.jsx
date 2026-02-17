@@ -82,7 +82,7 @@ export default function LoginScreen({ onBack, onRegisterClick }) {
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/20 text-[10px] uppercase tracking-[0.3em] whitespace-nowrap">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/20 text-[10px] uppercase whitespace-nowrap">
         Защищено SSPB ID © 2026
       </div>
     </motion.div>
