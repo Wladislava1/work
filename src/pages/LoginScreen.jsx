@@ -9,7 +9,7 @@ export default function LoginScreen({ onBack, onRegisterClick }) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.98 }}
       transition={{ duration: 0.3 }}
-      className="min-h-screen bg-gradient-to-br from-[#56b1ff] to-[#00396a] bg-fixed flex items-center justify-center px-5 font-sans"
+      className="min-h-screen bg-gradient-to-br from-[#56b1ff] to-[#00396a] bg-fixed flex items-center justify-center px-5 font-manrope"
     >
       <div className="w-full max-w-[420px] bg-white/20 backdrop-blur-2xl border border-white/30 rounded-[32px] p-8 md:p-10 shadow-2xl relative overflow-hidden">
         
@@ -18,7 +18,7 @@ export default function LoginScreen({ onBack, onRegisterClick }) {
         <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-[#00396a]/20 rounded-full blur-3xl" />
 
         <div className="relative flex flex-col items-center">
-          <h2 className="text-white text-3xl font-black tracking-[0.05em] uppercase mb-1">SSPB ID</h2>
+          <h2 className="text-white text-3xl font-bold uppercase mb-1">SSPB ID</h2>
           <p className="text-white/90 text-lg font-medium mb-1 tracking-wide">Добро пожаловать</p>
           <p className="text-white/60 text-sm mb-8 text-center max-w-[280px]">
             Введите учетные данные для доступа

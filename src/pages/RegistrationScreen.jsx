@@ -17,7 +17,7 @@ export default function RegistrationScreen({ onBack, onLoginClick }) {
     if (mainRole === 'phys') return { label: "Физическое лицо", icon: <User size={18} /> };
     if (mainRole === 'arb') return { label: "Арбитражный управляющий", icon: <Gavel size={18} /> };
     if (mainRole === 'jur') {
-      if (jurSubRole === 'sro') return { label: "СRO", icon: <ShieldCheck size={18} /> };
+      if (jurSubRole === 'sro') return { label: "СРО", icon: <ShieldCheck size={18} /> };
       if (jurSubRole === 'trade') return { label: "Организатор торгов", icon: <Hammer size={18} /> };
       return { label: "Организация", icon: <Building2 size={18} /> };
     }
@@ -46,7 +46,7 @@ export default function RegistrationScreen({ onBack, onLoginClick }) {
             {step === 1 ? (
               <motion.div key="step1" initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="w-full space-y-6">
                 <div className="space-y-3">
-                  <label className="text-white font-medium ml-1">Выберите статус</label>
+                  <label className="text-white font-medium ml-1">Выберите тип аккаунта</label>
                   <div className="grid gap-3">
                     <RoleButton active={mainRole === 'phys'} onClick={() => { setMainRole('phys'); setJurSubRole(null); }} icon={User} label="Физическое лицо" />
                     <RoleButton active={mainRole === 'jur'} onClick={() => setMainRole('jur')} icon={Building2} label="Юридическое лицо" />
@@ -56,7 +56,7 @@ export default function RegistrationScreen({ onBack, onLoginClick }) {
 
                 {isJuridical && (
                   <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} className="space-y-3">
-                    <label className="text-white font-medium ml-1">Тип организации</label>
+                    <label className="text-white font-medium ml-1">Тип оюридического лица</label>
                     <div className="grid gap-3">
                       <RoleButton active={jurSubRole === 'sro'} onClick={() => setJurSubRole('sro')} icon={ShieldCheck} label="СРО" isSub />
                       <RoleButton active={jurSubRole === 'trade'} onClick={() => setJurSubRole('trade')} icon={Hammer} label="Организатор торгов" isSub />
