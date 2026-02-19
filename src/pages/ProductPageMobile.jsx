@@ -156,9 +156,9 @@ const ProductPageMobile = () => {
                 <h2 className="text-2xl font-extrabold text-center text-[#00396a] mb-8">Ключевые возможности</h2>
                 <div className="grid gap-4">
                     {data.features.map((feat, i) => (
-                        <div key={i} className="bg-[#1976d2] p-6 rounded-3xl shadow-sm">
-                            <h3 className="text-lg font-bold mb-2 text-white">{feat.title}</h3>
-                            <p className="text-base text-white">{feat.text}</p>
+                        <div key={i} className="bg-[#c0dcf7] p-6 rounded-3xl shadow-sm">
+                            <h3 className="text-lg font-bold mb-2 text-[#00396a]">{feat.title}</h3>
+                            <p className="text-base text-[#00396a]">{feat.text}</p>
                         </div>
                     ))}
                 </div>

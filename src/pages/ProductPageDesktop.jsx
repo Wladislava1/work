@@ -167,10 +167,10 @@ const ProductPageDesktop = () => {
             return (
                 <div 
                     key={i} 
-                    className={`bg-[#1976d2] p-8 rounded-[32px] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full ${gridSpan}`}
+                    className={`bg-[#c0dcf7] p-8 rounded-[32px] shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-full ${gridSpan}`}
                 >
-                    <h3 className="text-2xl font-bold mb-4 text-white whitespace-pre-line">{feat.title}</h3>
-                    <p className="text-xl text-white mb-2 flex-grow whitespace-pre-line">{feat.text}</p>
+                    <h3 className="text-2xl font-bold mb-4 text-[#00396a] whitespace-pre-line">{feat.title}</h3>
+                    <p className="text-xl text-[#00396a] mb-2 flex-grow whitespace-pre-line">{feat.text}</p>
                 </div>
             );
         })}
