@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import ImageCarousel from '../components/ImageCarousel';
 import Button from '../components/Button';
-import { SquareCheckBig } from 'lucide-react';
+import { SquareCheckBig, MoreHorizontal } from 'lucide-react';
 
 // ТЕ ЖЕ ИМПОРТЫ (ДУБЛИРОВАНИЕ)
 import sbSlide1 from '../assets/lk_blur_1.jpg';
@@ -20,12 +20,41 @@ import aiSlide3 from '../assets/скрин_3_референт.jpg';
 const ProductPageMobile = () => {
     const { productId } = useParams();
     const [aboutTab, setAboutTab] = React.useState('insurance');
+    const [comment, setComment] = React.useState('');
+    const [phone, setPhone] = React.useState('');
+    const [isSuccess, setIsSuccess] = React.useState(false);
+
+    const handlePhoneChange = (e) => {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.startsWith('7') || value.startsWith('8')) value = value.substring(1);
+        if (value.length > 10) value = value.substring(0, 10);
+        
+        let formatted = value.length > 0 ? '+7 ' : '';
+        if (value.length > 0) formatted += '(' + value.substring(0, 3);
+        if (value.length > 3) formatted += ') ' + value.substring(3, 6);
+        if (value.length > 6) formatted += '-' + value.substring(6, 8);
+        if (value.length > 8) formatted += '-' + value.substring(8, 10);
+        
+        setPhone(formatted);
+    };
+
+    // Подключение Turnstile
+    React.useEffect(() => {
+        const script = document.createElement('script');
+        script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+        script.async = true;
+        script.defer = true;
+        document.body.appendChild(script);
+    }, []);
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
         console.log("Lead Form Data (Mobile):", Object.fromEntries(formData));
-        alert("Заявка успешно отправлена");
+        setIsSuccess(true);
+        e.target.reset();
+        setComment('');
+        setPhone('');
     };
 
     // ДУБЛИРОВАНИЕ ДАННЫХ (MOBILE)
@@ -33,7 +62,7 @@ const ProductPageMobile = () => {
             'sb-arbitr': {
                 title: 'СБ Арбитр',
                 slogan: 'Сравнивайте, выбирайте, оформляйте',
-                desc: 'Страхование ответственности арбитражных управляющих. \nПолучите расчет стоимости по всем страховым компаниям, аккредитованным при Вашей СРО.',
+                desc: 'Страхование ответственности арбитражных управляющих и организация банковского обслуживания. Получите расчет стоимости по всем страховым компаниям, аккредитованным при вашем СРО.',
                 heroImage: 'https://placehold.co/800x600/e2e8f0/1e293b?text=SB+Hero',
                 siteUrl: 'https://сбарбитр.рф/',
                 nameButton: "Начать работу",
@@ -50,7 +79,7 @@ const ProductPageMobile = () => {
             'ai-referent': {
                 title: 'AI Referent',
                 slogan: 'Вы видите цифры, сервис находит риски',
-                desc: 'Анализ движения денежных средств, подозрительных \nсделок и контрагентов.',
+                desc: 'Анализ банковских выписок: движения денежных средств, подозрительных сделок и контрагентов должника.',
                 heroImage: 'https://placehold.co/800x600/e2e8f0/1e293b?text=AI+Hero',
                 siteUrl: 'https://ai-referent.ru',
                 nameButton: "Загрузить выписки",
@@ -58,16 +87,17 @@ const ProductPageMobile = () => {
                 howItWorks: 'Загрузите банковские выписки предприятия и получите персонализированный дашборд \nс информацией по каждому платежу. Сервис автоматически выявит риски \nи сформирует отчетность.',
                 carouselImages: [aiSlide1, aiSlide2, aiSlide3],
                 features: [
-                    { title: "Экономия времени", text: "Автоматический анализ и отчеты за минуту." },
-                    { title: "«Умный» анализ", text: " Быстрое выявление подозрительных сделок и рисков доначисления налогов." },
-                    { title: "Минимизация ошибок", text: "Меньше ошибок благодаря отказу от “ручной” обработки документов" },
-                    { title: "Безопасность данных", text: "Обработка данных на собственных серверах, защищённых по ISO 27001, исключает возможность «утечек»." }
+                    { title: "Минимизация ошибок", text: "Меньше ошибок благодаря отказу от “ручной”\nобработки документов." },
+                    { title: "Безопасность данных", text: "Обработка данных на собственных серверах, защищённых по ISO 27001, исключает\nвозможность «утечек»." },
+                    { title: "Универсальность", text: "Обработка разных форматов документов (выгрузки из 1C, Excel, Word и PDF, включая сканы)." },
+                    { title: "Экономия времени", text: "Автоматический анализ \nи отчеты." },
+                    { title: "«Умный» анализ", text: "Быстрое выявление подозрительных сделок." },
                 ]
             },
             'au-publicator': {
                 title: 'АУ-Публикатор',
                 slogan: 'Не мучайтесь с публикациями в “Ъ”',
-                desc: 'Первый бесплатный сервис для автоматизированной публикации сообщений в “Коммерсантъ” за считанные минуты.',
+                desc: 'Первый бесплатный сервис для автоматизированной публикации юридически корректных сообщений в “Коммерсантъ” за считанные минуты.',
                 heroImage: 'https://placehold.co/800x600/e2e8f0/1e293b?text=Publicator+Hero',
                 siteUrl: 'https://au-publicator.ru',
                 nameButton: "Начать работу",
@@ -75,10 +105,10 @@ const ProductPageMobile = () => {
                 howItWorks: 'Создайте заявку всего за 7 шагов: от выбора типа публикации до проверки сгенерированного текста.',
                 carouselImages: [auSlide1, auSlide2, auSlide3, auSlide4, auSlide5, auSlide6],
                 features: [
-                    { title: "Экономия времени", text: "Оплачивайте только размещение в «Ъ»." },
+                    { title: "Экономия времени", text: "Создайте заявку на публикацию всего за 7 шагов." },
                     { title: "Автоматизация", text: "Введите ИНН — остальное загрузится само." },
-                    { title: "Минимизация рисков", text: "Минимизация рисков ошибок." },
-                    { title: "Выгодно", text: "Баллы за публикации для других сервисов." }
+                    { title: "Минимизация рисков", text: "Сервис генерирует юридически корректный текст, исключая несоответствия требованиям действующего законодательства." },
+                    { title: "Бесплатный сервис", text: "Оплачивайте только размещение публикаций в “Ъ”." }
                 ]
             }
     };
@@ -86,7 +116,7 @@ const ProductPageMobile = () => {
     const aboutData = {
         insurance: {
             title: "8 лет успешного сотрудничества с ведущими страховыми компаниями",
-            subtitle: "Мы помогаем более 30 СРО взаимодействовать со страховыми компаниями, не увеличивая стоимость договора страхования.",
+            subtitle: "Мы помогаем СРО взаимодействовать со страховыми компаниями, не увеличивая стоимость договора страхования.",
             list: [
                 "ТИТ", "Британский Страховой Дом", "Международная страховая группа", "Аскор", "НКО ПОВС «СПЕКТР»", "ОВС «Сириус»"
             ]
@@ -95,8 +125,8 @@ const ProductPageMobile = () => {
             title: "Работаем с крупнейшими СРО арбитражных управляющих",
             subtitle: "Нам доверяют ведущие ассоциации и союзы по всей России.",
             list: [
-                "САМРО «Ассоциация антикризисных управляющих»", "Ассоциация СОАУ «Меркурий»", "Ассоциация СРО ОАУ «Лидер»",
-                "Союз АУ «Возрождение»", "Союз АУ «Созидание»", "ААУ «Арсенал»", "ААУ «ЦФОП АПК»", "ПАУ ЦФО", "ААУ «СИРИУС»"
+                "САУ «СРО «ДЕЛО»", "ААУ «Сириус»", "Ассоциация «МСОПАУ»",
+                "Союз «СРО АУ «Стратегия»", "Ассоциация СРО «Эгида»", "Союз АУ «НЦРБ»", "Ассоциация ВАУ «Достояние»", "НПС СОПАУ «Альянс управляющих»", "И другие"
             ]
         }
     };
@@ -105,7 +135,7 @@ const ProductPageMobile = () => {
     if (!data) return <Navigate to="/" />;
 
     return (
-        <div className="pt-24 pb-12 overflow-x-hidden">
+        <div className="pt-24 overflow-x-hidden">
             {/* Mobile Hero */}
             <section className="px-4 mb-16 pt-6">
                 <div className="text-center mb-8">
@@ -149,8 +179,8 @@ const ProductPageMobile = () => {
                     8 лет успешного сотрудничества <br />
                     с ведущими страховыми компаниями и СРО
                 </h2>
-                <p className="text-lg text-neutral leading-relaxed max-w-lg">
-                    Мы помогаем 30+ СРО взаимодействовать со страховыми компаниями,{' '}
+                <p className="text-md text-neutral leading-relaxed max-w-lg">
+                    Мы помогаем СРО взаимодействовать со страховыми компаниями,{' '}
                     <span className="font-bold">не увеличивая стоимость договора страхования.</span>
                 </p>
             </div>
@@ -165,15 +195,22 @@ const ProductPageMobile = () => {
 
                 {/* Список элементов (в одну колонку со скроллом) */}
                 <div className="flex flex-col gap-3 overflow-y-auto custom-scrollbar pr-2 flex-grow">
-                    {aboutData[aboutTab].list.map((item, idx) => (
-                        <div key={idx} className="bg-gray-50 p-3 rounded-xl border border-gray-100 flex items-center gap-3 shadow-sm hover:shadow-md transition-all">
-                            <div className="w-8 h-8 rounded-full bg-[#c0dcf7] flex items-center justify-center shrink-0">
-                                {/* Используем новую квадратную галочку */}
-                                <SquareCheckBig size={16} className="text-[#00396a]" />
+                    {aboutData[aboutTab].list.map((item, idx) => {
+                        // Проверяем, это обычный пункт или "И другие"
+                        const isOthers = item === "И другие";
+                        // Выбираем иконку
+                        const IconComponent = isOthers ? MoreHorizontal : SquareCheckBig;
+
+                        return (
+                            <div key={idx} className="bg-gray-50 p-3 rounded-xl border border-gray-100 flex items-center gap-3 shadow-sm hover:shadow-md transition-all">
+                                <div className="w-8 h-8 rounded-full bg-[#c0dcf7] flex items-center justify-center shrink-0">
+                                    {/* Рендерим нужную иконку */}
+                                    <IconComponent size={16} className="text-[#00396a]" />
+                                </div>
+                                <span className="text-xs font-bold text-[#00396a] leading-snug">{item}</span>
                             </div>
-                            <span className="text-xs font-bold text-[#00396a] leading-snug">{item}</span>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
 
@@ -207,76 +244,57 @@ const ProductPageMobile = () => {
                 </div>
             </section>
 
-            {/* Mobile Form (Вертикальная) */}
-            <section className="bg-[#1976d2] py-6 mx-4 rounded-[32px] shadow-xl relative overflow-hidden">
-    <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-    <div className="relative z-10 px-6">
-        <div className="text-center mb-5">
-            <h2 className="text-2xl font-extrabold text-white mb-3">Готовы начать?</h2>
-            <p className="text-blue-100">Оставьте заявку, и мы свяжемся с Вами</p>
-        </div>
-        
-        <form onSubmit={handleFormSubmit} className="space-y-4">
-            <input 
-                name="name" 
-                required 
-                type="text" 
-                className="w-full px-5 py-4 rounded-full bg-white text-gray-900 placeholder-gray-500 outline-none focus:ring-4 focus:ring-white/30 transition-all shadow-md" 
-                placeholder="Ваше Имя" 
-            />
-            <input 
-                name="phone" 
-                required 
-                type="tel" 
-                className="w-full px-5 py-4 rounded-full bg-white text-gray-900 placeholder-gray-500 outline-none focus:ring-4 focus:ring-white/30 transition-all shadow-md" 
-                placeholder="Телефон" 
-            />
-            <input 
-                name="email" 
-                required 
-                type="email" 
-                className="w-full px-5 py-4 rounded-full bg-white text-gray-900 placeholder-gray-500 outline-none focus:ring-4 focus:ring-white/30 transition-all shadow-md" 
-                placeholder="Email" 
-            />
-            
-            {/* Блок чекбоксов */}
-            <div className="flex flex-col items-start gap-3 mt-4">
+            {/* Mobile Form (Light Mode) */}
+            <section className="bg-white py-8 mx-4 rounded-[32px] border-4 border-[#00396a] relative shadow-xl overflow-hidden">
+                <div className="absolute -top-16 -right-16 w-48 h-48 bg-blue-50 rounded-full blur-3xl"></div>
                 
-                {/* 1. Обязательная галочка */}
-                <div className="flex items-start gap-3">
-                    <div className="relative flex items-start">
-                        <input 
-                            id="privacy-mob" 
-                            name="privacy"
-                            type="checkbox" 
-                            required 
-                            className=" w-5 h-5 text-[#00396a] bg-white border-transparent rounded focus:ring-white focus:ring-offset-0 cursor-pointer" 
-                        />
+                <div className="relative z-10 px-6">
+                    <div className="text-center mb-2">
+                        <h2 className="text-2xl font-extrabold text-[#00396a] mb-0.5">Готовы начать?</h2>
+                        <p className="text-gray-500 text-sm">Оставьте заявку для получения доступа</p>
                     </div>
-                    <label htmlFor="privacy-mob" className="text-xs text-blue-100 cursor-pointer hover:text-white transition-colors text-left leading-tight">
-                        Я согласен на обработку персональных данных
-                    </label>
-                </div>
+                    
+                    <form onSubmit={handleFormSubmit} className="space-y-3">
+                        <input name="name" required className="w-full px-5 py-3 rounded-xl bg-gray-50 border-2 border-[#00396a]/30 text-gray-900 placeholder-gray-400 focus:border-[#00396a] outline-none text-sm transition-all" placeholder="Ваше Имя" />
+                        <input name="phone" required type="tel" value={phone} onChange={handlePhoneChange} className="w-full px-5 py-3 rounded-xl bg-gray-50 border-2 border-[#00396a]/30 text-gray-900 placeholder-gray-400 focus:border-[#00396a] outline-none text-sm transition-all" placeholder="+7 (___) ___-__-__" />
+                        <input name="email" required type="email" className="w-full px-5 py-3 rounded-xl bg-gray-50 border-2 border-[#00396a]/30 text-gray-900 placeholder-gray-400 focus:border-[#00396a] outline-none text-sm transition-all" placeholder="Email" />
+                        
+                        <div className="relative">
+                            <textarea name="comment" maxLength={100} value={comment} onChange={(e) => setComment(e.target.value)} className="w-full px-5 py-3 rounded-xl bg-gray-50 border-2 border-[#00396a]/30 text-gray-900 placeholder-gray-400 focus:border-[#00396a] outline-none h-20 resize-none text-sm transition-all" placeholder="Ваш комментарий (опционально)"></textarea>
+                            <span className="absolute bottom-2 right-3 text-[10px] text-gray-400">{comment.length}/100</span>
+                        </div>
 
-                {/* 2. Необязательная галочка */}
-                <div className="flex items-start gap-3">
-                    <div className="relative flex items-start">
-                        <input 
-                            id="subscribe-mob" 
-                            name="subscribe"
-                            type="checkbox" 
-                            className=" w-5 h-5 text-[#00396a] bg-white border-transparent rounded focus:ring-white focus:ring-offset-0 cursor-pointer" 
-                        />
-                    </div>
-                    <label htmlFor="subscribe-mob" className="text-xs text-blue-100 cursor-pointer hover:text-white transition-colors text-left leading-tight">
-                        Я согласен получать рассылку о скидках и новых функциях
-                    </label>
+                        <div className="space-y-2">
+                            <label className="flex items-start gap-3 cursor-pointer">
+                                <input name="privacy" type="checkbox" required className=" w-4 h-4 text-[#00396a] border-gray-300 rounded" />
+                                <span className="text-[11px] text-gray-600 leading-tight">Я согласен на обработку персональных данных</span>
+                            </label>
+                            <label className="flex items-start gap-3 cursor-pointer">
+                                <input name="subscribe" type="checkbox" className=" w-4 h-4 text-[#00396a] border-gray-300 rounded" />
+                                <span className="text-[11px] text-gray-600 leading-tight">Я согласен получать рассылку о скидках</span>
+                            </label>
+                        </div>
+
+                        <Button type="submit" variant="custom" className="w-full bg-[#00396a] text-white py-4 rounded-full font-bold shadow-lg">Получить доступ</Button>
+                    </form>
                 </div>
-            </div>
-            <Button type="submit" className="w-full bg-[#00396a] text-[#00396a] hover:text-white hover:bg-[#002a4d] transition-all duration-300">Получить доступ</Button>
-        </form>
-    </div>
-</section>
+            </section>
+
+            {/* Modal Success */}
+            {isSuccess && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 backdrop-blur-md bg-[#00396a]/10">
+                    <div className="bg-white rounded-[40px] p-8 max-w-sm w-full text-center shadow-2xl border-2 border-gray-100 animate-in zoom-in duration-300">
+                        <div className="flex justify-center mb-6"> {/* Этот контейнер помогает, но mx-auto надежнее */}
+                            <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto">
+                                <SquareCheckBig size={48} className="text-blue-500" />
+                            </div>
+                        </div>
+                        <h3 className="text-xl font-extrabold text-[#00396a] mb-2">Заявка отправлена!</h3>
+                        <p className="text-gray-500 text-sm mb-6">Мы свяжемся с Вами в ближайшее время.</p>
+                        <Button variant="custom" onClick={() => setIsSuccess(false)} className="w-full py-4 rounded-full bg-[#00396a] text-white font-bold">Отлично</Button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
