@@ -65,6 +65,7 @@ const ProductPageMobile = () => {
                 desc: 'Страхование ответственности арбитражных управляющих и организация банковского обслуживания. Получите расчет стоимости по всем страховым компаниям, аккредитованным при вашем СРО.',
                 heroImage: 'https://placehold.co/800x600/e2e8f0/1e293b?text=SB+Hero',
                 siteUrl: 'https://сбарбитр.рф/',
+                siteUrlSSPBID: 'https://passport.sspb.ru/',
                 nameButton: "Начать работу",
                 nameButtonHeader: "Получить расчет",
                 howItWorks: 'Заполните одну заявку и получите расчет стоимости сразу по всем страховым компаниям. Стоимость договора такая же, как в страховой компании.',
@@ -83,6 +84,7 @@ const ProductPageMobile = () => {
                 heroImage: 'https://placehold.co/800x600/e2e8f0/1e293b?text=AI+Hero',
                 siteUrl: 'https://ai-referent.ru',
                 nameButton: "Загрузить выписки",
+                siteUrlSSPBID: 'https://passport.sspb.ru/',
                 nameButtonHeader: "Проанализировать",
                 howItWorks: 'Загрузите банковские выписки предприятия и получите персонализированный дашборд \nс информацией по каждому платежу. Сервис автоматически выявит риски \nи сформирует отчетность.',
                 carouselImages: [aiSlide1, aiSlide2, aiSlide3],
@@ -100,6 +102,7 @@ const ProductPageMobile = () => {
                 desc: 'Первый бесплатный сервис для автоматизированной публикации юридически корректных сообщений в “Коммерсантъ” за считанные минуты.',
                 heroImage: 'https://placehold.co/800x600/e2e8f0/1e293b?text=Publicator+Hero',
                 siteUrl: 'https://au-publicator.ru',
+                siteUrlSSPBID: 'https://passport.sspb.ru/',
                 nameButton: "Начать работу",
                 nameButtonHeader: "Создать публикацию",
                 howItWorks: 'Создайте заявку всего за 7 шагов: от выбора типа публикации до проверки сгенерированного текста.',
@@ -143,13 +146,23 @@ const ProductPageMobile = () => {
                     <h1 className="text-2xl font-extrabold mb-4 leading-tight text-[#00396a]">{data.slogan}</h1>
                     <p className="text-lg text-neutral mb-8">{data.desc}</p>
                     <div className="flex flex-col gap-3">
-                        <Button variant="custom" className="bg-[#00396a] text-white w-full py-4 text-lg" href={data.siteUrl} target="_blank">{data.nameButtonHeader}</Button>
+                        <Button variant="custom" className="bg-[#00396a] text-white w-full py-4 text-lg" href={data.siteUrlSSPBID} target="_blank">{data.nameButtonHeader}</Button>
                         <Button variant="custom" className="bg-white text-[#00396a] border-2 border-gray-100 w-full py-4 text-lg" onClick={() => document.getElementById('how').scrollIntoView({ behavior: 'smooth' })}>Как это работает</Button>
                     </div>
                 </div>
             </section>
 
-
+<section className="px-4 mb-16">
+                <h2 className="text-2xl font-extrabold text-center text-[#00396a] mb-8">Ключевые возможности</h2>
+                <div className="grid gap-4">
+                    {data.features.map((feat, i) => (
+                        <div key={i} className="bg-[#1976d2] p-6 rounded-3xl shadow-sm">
+                            <h3 className="text-lg font-bold mb-2 text-white">{feat.title}</h3>
+                            <p className="text-base text-white">{feat.text}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
 {/* Блок "О нас" (Только для СБ Арбитр - MOBILE) */}
 {productId === 'sb-arbitr' && (
     <section className="mx-4 mb-12">
@@ -232,17 +245,7 @@ const ProductPageMobile = () => {
             </section>
 
             {/* Mobile Features (1 колонка) */}
-            <section className="px-4 mb-16">
-                <h2 className="text-2xl font-extrabold text-center text-[#00396a] mb-8">Возможности</h2>
-                <div className="grid gap-4">
-                    {data.features.map((feat, i) => (
-                        <div key={i} className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
-                            <h3 className="text-lg font-bold mb-2 text-[#00396a]">{feat.title}</h3>
-                            <p className="text-base text-[#00396a]">{feat.text}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
+            
 
             {/* Mobile Form (Light Mode) */}
             <section className="bg-white py-8 mx-4 rounded-[32px] border-4 border-[#00396a] relative shadow-xl overflow-hidden">

@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom'; // Добавил Link для работы кнопок
+import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 import ImageCarousel from '../components/ImageCarousel';
 import SbArbitrLogo from '../assets/сб_арбитр.svg';
 import AirLogo from '../assets/AIR_лого.svg';
 import AuPubLogo from '../assets/au_logo.svg';
-import { Shield, BarChart, FileText, SquareCheckBig, Users, Briefcase, Award, ArrowRight, CheckCircle, MoreHorizontal } from 'lucide-react';// Добавил ArrowRight
+import { Shield, BarChart, FileText, SquareCheckBig, Users, Briefcase, Award, ArrowRight, CheckCircle, MoreHorizontal } from 'lucide-react';
 import sbSlide1 from '../assets/lk_blur_1.jpg';
 import sbSlide2 from '../assets/lk_blur_2.jpg';
 
@@ -30,7 +30,7 @@ const Home = () => {
 
 
   const handlePhoneChange = (e) => {
-    let value = e.target.value.replace(/\D/g, ''); // только цифры
+    let value = e.target.value.replace(/\D/g, '');
     if (value.startsWith('7') || value.startsWith('8')) value = value.substring(1);
     if (value.length > 10) value = value.substring(0, 10);
     
@@ -58,6 +58,7 @@ const Home = () => {
       link: "/sb-arbitr",
       // Добавили внешнюю ссылку
       externalLink: "https://xn--80abb2a1bcbn.xn--p1ai/", 
+      siteUrlSSPBID: 'https://passport.sspb.ru/',
       images: [sbSlide2, sbSlide1]
     },
     'ai-referent': {
@@ -66,6 +67,7 @@ const Home = () => {
       link: "/ai-referent",
       // Добавили внешнюю ссылку
       externalLink: "https://ai-referent.ru/",
+      siteUrlSSPBID: 'https://passport.sspb.ru/',
       images: [aiSlide1, aiSlide2, aiSlide3]
     },
     'au-publicator': {
@@ -74,6 +76,7 @@ const Home = () => {
       link: "/au-publicator",
       // Добавили внешнюю ссылку
       externalLink: "https://au-publicator.ru/",
+      siteUrlSSPBID: 'https://passport.sspb.ru/',
       images: [auSlide1, auSlide2, auSlide3, auSlide4, auSlide5, auSlide6]
     }
   };
@@ -99,9 +102,9 @@ const Home = () => {
         <div className="text-center max-w-5xl mx-auto mb-16">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight"
+            className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight"
           >
-            ССПБ ID – <span className="text-primary">единая платформа сервисов для сопровождения процедур банкротства</span>
+            ССПБ ID – единая платформа сервисов для сопровождения процедур банкротства
           </motion.h1>
           <p className="text-2xl mb-8">
             Страхование, банковское обслуживание, финансовый анализ сделок должников, публикации в «Ъ» и управление процедурами – все на одной платформе с единым входом
@@ -113,7 +116,7 @@ const Home = () => {
           {[
             { 
               title: "СБ Арбитр", 
-              desc: "Страхование ответственности арбитражных управляющих", 
+              desc: "Страхование ответственности арбитражных управляющих\nи организация банковского обслуживания", 
               icon: SbArbitrLogo,
               link: "/sb-arbitr",
               gradient: "from-[#215e5e] to-[#7CE2E2]",
@@ -166,9 +169,8 @@ const Home = () => {
                   }}
                 />
               </div>
-                            
-              <h3 className="text-3xl font-bold mb-3">{card.title}</h3>
-              <p className="text-lg text-white mb-8 flex-grow whitespace-pre-line">{card.desc}</p>
+                          
+              <p className="text-lg md:text-md text-white mb-8 flex-grow whitespace-pre-line">{card.desc}</p>
               
               {/* Обновленная кнопка "Подробнее" */}
               {/* mx-auto центрирует кнопку, px-8 задает компактную ширину по тексту */}
@@ -223,7 +225,7 @@ const Home = () => {
               </ul>
               <div>
                 <a 
-                  href={tabsData[activeTab].externalLink}
+                  href={tabsData[activeTab].siteUrlSSPBID}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="group flex items-center justify-center w-full py-4 px-6 rounded-full font-semibold transition-all duration-300 bg-white text-[#00396a] hover:shadow-xl cursor-pointer"

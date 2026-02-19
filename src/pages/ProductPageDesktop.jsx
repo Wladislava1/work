@@ -63,6 +63,7 @@ const ProductPageDesktop = () => {
             desc: 'Страхование ответственности арбитражных управляющих\nи организация банковского обслуживания.\nПолучите расчет стоимости по всем страховым компаниям,\nаккредитованным при вашем СРО.',
             heroImage: 'https://placehold.co/800x600/e2e8f0/1e293b?text=SB+Hero',
             siteUrl: 'https://сбарбитр.рф/',
+            siteUrlSSPBID: 'https://passport.sspb.ru/',
             nameButton: "Начать работу",
             nameButtonHeader: "Получить расчет",
             howItWorks: 'Заполните одну заявку и получите расчет стоимости сразу по всем страховым компаниям. Стоимость договора такая же, как в страховой компании.',
@@ -80,6 +81,7 @@ const ProductPageDesktop = () => {
             desc: 'Анализ банковских выписок: движения денежных средств,\nподозрительных сделок и контрагентов должника.',
             heroImage: 'https://placehold.co/800x600/e2e8f0/1e293b?text=AI+Hero',
             siteUrl: 'https://ai-referent.ru',
+            siteUrlSSPBID: 'https://passport.sspb.ru/',
             nameButton: "Загрузить выписки",
             nameButtonHeader: "Проанализировать",
             howItWorks: 'Загрузите банковские выписки предприятия и получите персонализированный дашборд \nс информацией по каждому платежу. Сервис автоматически выявит риски \nи сформирует отчетность.',
@@ -98,6 +100,7 @@ const ProductPageDesktop = () => {
             desc: 'Первый бесплатный сервис для автоматизированной публикации юридически корректных сообщений в “Коммерсантъ” за считанные минуты.',
             heroImage: 'https://placehold.co/800x600/e2e8f0/1e293b?text=Publicator+Hero',
             siteUrl: 'https://au-publicator.ru',
+            siteUrlSSPBID: 'https://passport.sspb.ru/',
             nameButton: "Начать работу",
             nameButtonHeader: "Создать публикацию",
             howItWorks: 'Создайте заявку всего за 7 шагов: от выбора типа публикации до проверки сгенерированного текста.',
@@ -135,16 +138,44 @@ const ProductPageDesktop = () => {
     return (
         <div className="pt-24">
             {/* Hero Section (Desktop) */}
-            <section className="max-w-7xl mx-auto px-4 mb-20 pt-10">
+            <section className="max-w-7xl mx-auto px-4 mb-5 pt-5">
                 <div className="text-center max-w-5xl mx-auto mb-16">
-                    <span className="text-4xl md:text-6xl font-extrabold mb-4 block">{data.title}</span>
+                    <span className="text-4xl md:text-5xl font-extrabold mb-4 block">{data.title}</span>
                     <h1 className="text-4xl font-extrabold mb-6 leading-tight text-[#00396a]">{data.slogan}</h1>
                     <p className="text-2xl text-neutral mb-10 max-w-5xl mx-auto whitespace-pre-line">{data.desc}</p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button variant="custom" className="bg-[#00396a] text-white hover:shadow-lg px-8 py-4 text-lg" href={data.siteUrl} target="_blank">{data.nameButtonHeader}</Button>
+                        <Button variant="custom" className="bg-[#00396a] text-white hover:shadow-lg px-8 py-4 text-lg" href={data.siteUrlSSPBID} target="_blank">{data.nameButtonHeader}</Button>
                         <Button variant="custom" className="bg-white text-[#00396a] shadow-md hover:shadow-lg px-8 py-4 text-lg" onClick={() => document.getElementById('how').scrollIntoView({ behavior: 'smooth' })}>Как это работает</Button>
                     </div>
                 </div>
+                            {/* Features (Grid 4) */}
+<section className="max-w-7xl mx-auto px-4 mb-20">
+    <h2 className="text-2xl md:text-4xl font-extrabold text-center text-[#00396a] mb-12">Ключевые возможности</h2>
+    
+    <div className={`grid gap-8 ${
+        productId === 'ai-referent' 
+        ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-6' // 6 колонок для гибкости
+        : 'md:grid-cols-2 lg:grid-cols-4' 
+    }`}>
+        {data.features.map((feat, i) => {
+            // Логика для AI Referent: первые две карточки на 3 колонки (50%), остальные на 2 (33%)
+            const isAiReferent = productId === 'ai-referent';
+            const gridSpan = isAiReferent 
+                ? (i < 2 ? 'lg:col-span-3' : 'lg:col-span-2') 
+                : '';
+
+            return (
+                <div 
+                    key={i} 
+                    className={`bg-[#1976d2] p-8 rounded-[32px] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full ${gridSpan}`}
+                >
+                    <h3 className="text-2xl font-bold mb-4 text-white whitespace-pre-line">{feat.title}</h3>
+                    <p className="text-xl text-white mb-2 flex-grow whitespace-pre-line">{feat.text}</p>
+                </div>
+            );
+        })}
+    </div>
+</section>
             </section>
             {productId === 'sb-arbitr' && (
                 <section className="max-w-7xl mx-auto px-4 mb-20">
@@ -220,6 +251,7 @@ const ProductPageDesktop = () => {
                     </div>
                 </section>
             )}
+            
             {/* How it works */}
             <section id="how" className="bg-[#1976d2] py-8 rounded-[40px] shadow-sm mx-4 mb-20">
                 <div className="max-w-7xl mx-auto px-4 text-center mb-5">
@@ -228,38 +260,11 @@ const ProductPageDesktop = () => {
                 </div>
                 <ImageCarousel images={data.carouselImages} fit="contain" variant="product"/>
                 <div className="text-center mt-8">
-                    <Button variant="custom" className="bg-white text-[#00396a] shadow-md hover:shadow-lg px-16 py-4 text-lg" href={data.siteUrl}>{data.nameButton}</Button>
+                    <Button variant="custom" className="bg-white text-[#00396a] shadow-md hover:shadow-lg px-16 py-4 text-lg" href={data.siteUrlSSPBID}>{data.nameButton}</Button>
                 </div>
             </section>
 
-            {/* Features (Grid 4) */}
-<section className="max-w-7xl mx-auto px-4 mb-20">
-    <h2 className="text-2xl md:text-4xl font-extrabold text-center text-[#00396a] mb-12">Ключевые возможности</h2>
-    
-    <div className={`grid gap-8 ${
-        productId === 'ai-referent' 
-        ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-6' // 6 колонок для гибкости
-        : 'md:grid-cols-2 lg:grid-cols-4' 
-    }`}>
-        {data.features.map((feat, i) => {
-            // Логика для AI Referent: первые две карточки на 3 колонки (50%), остальные на 2 (33%)
-            const isAiReferent = productId === 'ai-referent';
-            const gridSpan = isAiReferent 
-                ? (i < 2 ? 'lg:col-span-3' : 'lg:col-span-2') 
-                : '';
 
-            return (
-                <div 
-                    key={i} 
-                    className={`bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full ${gridSpan}`}
-                >
-                    <h3 className="text-2xl font-bold mb-4 text-[#00396a] whitespace-pre-line">{feat.title}</h3>
-                    <p className="text-xl text-[#00396a] mb-2 flex-grow whitespace-pre-line">{feat.text}</p>
-                </div>
-            );
-        })}
-    </div>
-</section>
 
             {/* Form (Horizontal Grid) */}
             <section className="max-w-2xl bg-white py-8 mx-auto rounded-[32px] border-4 border-[#00396a] relative overflow-hidden shadow-xl">
