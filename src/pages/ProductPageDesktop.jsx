@@ -68,12 +68,17 @@ const ProductPageDesktop = () => {
             nameButtonHeader: "Получить расчет",
             howItWorks: 'Заполните одну заявку и получите расчет стоимости сразу по всем страховым компаниям. Стоимость договора такая же, как в страховой компании.',
             carouselImages: [sbSlide2, sbSlide1],
+            theme: {
+                gradient: "bg-gradient-to-r from-[#0d3b3b] to-[#28b8b8]",
+                colorButton: "bg-[#215e5e]",
+                textShadow: "shadow-[#215e5e]/20"
+            },
             features: [
                 { title: "Индивидуально", text: "Персональный менеджер поможет \nв оформлении необходимых документов \nв кратчайшие сроки." },
                 { title: "Быстро", text: "Вы получите расчет стоимости договора страхования сразу \nпо всем СК, аккредитованным \nпри Вашем СРО." },
                 { title: "Выгодно", text: "Мы подберем наиболее подходящий для Вас вариант." },
                 { title: "Без переплат", text: "Стоимость договора страхования такая же, как в страховой компании." }
-            ]
+            ],
         },
         'ai-referent': {
             title: 'AI Referent',
@@ -86,18 +91,23 @@ const ProductPageDesktop = () => {
             nameButtonHeader: "Проанализировать",
             howItWorks: 'Загрузите банковские выписки предприятия и получите персонализированный дашборд \nс информацией по каждому платежу. Сервис автоматически выявит риски \nи сформирует отчетность.',
             carouselImages: [aiSlide1, aiSlide2, aiSlide3],
+            theme: {
+                gradient: "bg-gradient-to-r from-[#31054a] via-[#611885] to-[#e0aaff]",
+                colorButton: "bg-[#52097d]",
+                textShadow: "shadow-[#611885]/20"
+            },
             features: [
-                { title: "Минимизация ошибок", text: "Меньше ошибок благодаря отказу от “ручной”\nобработки документов." },
-                { title: "Безопасность данных", text: "Обработка данных на собственных серверах, защищённых по ISO 27001, исключает\nвозможность «утечек»." },
-                { title: "Универсальность", text: "Обработка разных форматов документов (выгрузки из 1C, Excel, Word и PDF, включая сканы)." },
                 { title: "Экономия времени", text: "Автоматический анализ \nи отчеты." },
+                { title: "Универсальность", text: "Обработка разных форматов документов (выгрузки\nиз 1C, Excel, Word и PDF, включая сканы)." },
                 { title: "«Умный» анализ", text: "Быстрое выявление подозрительных сделок." },
+                { title: "Минимизация ошибок", text: "Меньше ошибок благодаря\nотказу от “ручной” обработки документов." },
+                { title: "Безопасность данных", text: "Обработка данных\nна собственных серверах, защищённых по ISO 27001, исключает\nвозможность «утечек»." },
             ]
         },
         'au-publicator': {
             title: 'АУ-Публикатор',
             slogan: 'Не мучайтесь с публикациями в “Ъ”',
-            desc: 'Первый бесплатный сервис для автоматизированной публикации юридически корректных сообщений в “Коммерсантъ” за считанные минуты.',
+            desc: 'Первый бесплатный сервис для автоматизированной публикации\nюридически корректных сообщений в “КоммерсантЪ” за считанные минуты.',
             heroImage: 'https://placehold.co/800x600/e2e8f0/1e293b?text=Publicator+Hero',
             siteUrl: 'https://au-publicator.ru',
             siteUrlSSPBID: 'https://passport.sspb.ru/',
@@ -105,6 +115,11 @@ const ProductPageDesktop = () => {
             nameButtonHeader: "Создать публикацию",
             howItWorks: 'Создайте заявку всего за 7 шагов: от выбора типа публикации до проверки сгенерированного текста.',
             carouselImages: [auSlide1, auSlide2, auSlide3, auSlide4, auSlide5, auSlide6],
+            theme: {
+                gradient: "bg-gradient-to-r from-[#cc0011] to-[#1a00ff]",
+                colorButton: "bg-[#AF3552]",
+                textShadow: "shadow-[#1A00FF]/20"
+            },
             features: [
                 { title: "Экономия времени", text: "Создайте заявку на публикацию всего за 7 шагов." },
                 { title: "Автоматизация", text: "Введите ИНН должника, АУ \nи судебный акт \nо его назначении, остальные данные загрузятся автоматически." },
@@ -140,11 +155,13 @@ const ProductPageDesktop = () => {
             {/* Hero Section (Desktop) */}
             <section className="max-w-7xl mx-auto px-4 mb-5 pt-5">
                 <div className="text-center max-w-5xl mx-auto mb-16">
-                    <span className="text-4xl md:text-5xl font-extrabold mb-4 block">{data.title}</span>
-                    <h1 className="text-4xl font-extrabold mb-6 leading-tight text-[#00396a]">{data.slogan}</h1>
-                    <p className="text-2xl text-neutral mb-10 max-w-5xl mx-auto whitespace-pre-line">{data.desc}</p>
+                    <span className={`text-4xl md:text-5xl font-black mb-4 block bg-gradient-to-r ${data.theme.gradient} bg-clip-text text-transparent`}>
+                        {data.title}
+                    </span>
+                    <h1 className={`text-4xl font-extrabold mb-6 leading-tight bg-gradient-to-r ${data.theme.gradient} bg-clip-text text-transparent text-[#00396a]`}>{data.slogan}</h1>
+                    <p className={`text-2xl text-neutral mb-10 max-w-5xl mx-auto bg-gradient-to-r ${data.theme.gradient} bg-clip-text text-transparent whitespace-pre-line`}>{data.desc}</p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button variant="custom" className="bg-[#00396a] text-white hover:shadow-lg px-8 py-4 text-lg" href={data.siteUrlSSPBID} target="_blank">{data.nameButtonHeader}</Button>
+                        <Button variant="custom" className={`${data.theme.colorButton} text-white hover:shadow-lg px-8 py-4 text-lg`} href={data.siteUrlSSPBID} target="_blank">{data.nameButtonHeader}</Button>
                         <Button variant="custom" className="bg-white text-[#00396a] shadow-md hover:shadow-lg px-8 py-4 text-lg" onClick={() => document.getElementById('how').scrollIntoView({ behavior: 'smooth' })}>Как это работает</Button>
                     </div>
                 </div>
@@ -267,131 +284,132 @@ const ProductPageDesktop = () => {
 
 
             {/* Form (Horizontal Grid) */}
-            <section className="max-w-2xl bg-white py-8 mx-auto rounded-[32px] border-4 border-[#00396a] relative overflow-hidden shadow-xl">
-    {/* Декоративный элемент — уменьшил размер */}
-    <div className="absolute -top-16 -right-16 w-48 h-48 bg-blue-50 rounded-full pointer-events-none blur-3xl"></div>
-    
-    <div className="max-w-lg mx-auto px-6 relative z-10"> 
-        <div className="text-center mb-6">
-            <h2 className="text-2xl md:text-3xl font-extrabold text-[#00396a] mb-2">Готовы начать?</h2>
-            <p className="text-gray-500 text-base">Оставьте заявку для получения доступа</p>
-        </div>
-        
-        <form onSubmit={handleFormSubmit} className="w-full space-y-4">
-            {/* Имя */}
-            <input 
-                name="name" 
-                required 
-                type="text" 
-                className="w-full px-5 py-3 rounded-xl bg-gray-50 border-2 border-[#00396a]/70 text-gray-900 placeholder-gray-400 outline-none focus:border-[#00396a] focus:bg-white transition-all text-sm" 
-                placeholder="Ваше Имя" 
-            />
+    {/* --- UNIFIED LEAD FORM --- */}
+            <section className="max-w-2xl mx-auto px-4 mb-5">
+                <div className="bg-[#c0dcf7] py-8 px-6 md:px-10 rounded-[32px] relative overflow-hidden shadow-xl">
+                    {/* Декоративный элемент */}
+                    <div className="absolute -top-16 -right-16 w-48 h-48 bg-white/40 rounded-full pointer-events-none blur-3xl"></div>
+                    
+                    <div className="relative z-10"> 
+                        <div className="text-center mb-6">
+                            <h2 className="text-2xl md:text-3xl font-extrabold text-[#00396a] mb-2">Готовы начать?</h2>
+                            <p className="text-[#00396a] text-sm md:text-base">Оставьте заявку для получения доступа</p>
+                        </div>
+                        
+                        <form onSubmit={handleFormSubmit} className="w-full space-y-4">
+                            {/* Имя */}
+                            <input 
+                                name="name" 
+                                required 
+                                type="text" 
+                                className="w-full px-5 py-3 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#00396a]/50 focus:bg-white transition-all text-sm" 
+                                placeholder="Ваше Имя" 
+                            />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input 
-                    name="phone" 
-                    required 
-                    type="tel" 
-                    value={phone}
-                    onChange={handlePhoneChange}
-                    className="w-full px-5 py-3 rounded-xl bg-gray-50 border-2 border-[#00396a]/70 text-gray-900 placeholder-gray-400 outline-none focus:border-[#00396a] focus:bg-white transition-all text-sm" 
-                    placeholder="+7 (___) ___-__-__" 
-                />
-                <input 
-                    name="email" 
-                    required 
-                    type="email" 
-                    className="w-full px-5 py-3 rounded-xl bg-gray-50 border-2 border-[#00396a]/70 text-gray-900 placeholder-gray-400 outline-none focus:border-[#00396a] focus:bg-white transition-all text-sm" 
-                    placeholder="Email" 
-                />
-            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <input 
+                                    name="phone" 
+                                    required 
+                                    type="tel" 
+                                    value={phone}
+                                    onChange={handlePhoneChange}
+                                    className="w-full px-5 py-3 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#00396a]/50 focus:bg-white transition-all text-sm" 
+                                    placeholder="+7 (___) ___-__-__" 
+                                />
+                                <input 
+                                    name="email" 
+                                    required 
+                                    type="email" 
+                                    className="w-full px-5 py-3 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#00396a]/50 focus:bg-white transition-all text-sm" 
+                                    placeholder="Email" 
+                                />
+                            </div>
 
-            {/* Комментарий — уменьшил высоту (h-24 вместо h-32) */}
-            <div className="relative">
-                <textarea 
-                    name="comment"
-                    maxLength={100}
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                    className="w-full px-5 py-3 rounded-xl bg-gray-50 border-2 border-[#00396a]/70 text-gray-900 placeholder-gray-400 outline-none focus:border-[#00396a] focus:bg-white transition-all resize-none h-24 text-sm"
-                    placeholder="Ваш комментарий (опционально)"
-                ></textarea>
-                <div className={`absolute bottom-2 right-3 text-[10px] font-medium ${comment.length >= 100 ? 'text-red-500' : 'text-gray-400'}`}>
-                    {comment.length} / 100
+                            {/* Комментарий */}
+                            <div className="relative">
+                                <textarea 
+                                    name="comment"
+                                    maxLength={100}
+                                    value={comment}
+                                    onChange={(e) => setComment(e.target.value)}
+                                    className="w-full px-5 py-3 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#00396a]/50 focus:bg-white transition-all resize-none h-24 text-sm"
+                                    placeholder="Ваш комментарий (опционально)"
+                                ></textarea>
+                                <div className={`absolute bottom-2 right-3 text-[10px] font-medium ${comment.length >= 100 ? 'text-red-500' : 'text-gray-400'}`}>
+                                    {comment.length} / 100
+                                </div>
+                            </div>
+
+                            {/* Turnstile */}
+                            <div className="flex justify-center scale-90 origin-center py-1">
+                                <div className="cf-turnstile" data-sitekey="YOUR_SITE_KEY_HERE"></div>
+                            </div>
+
+                            {/* Блок чекбоксов */}
+                            <div className="space-y-2 px-1">
+                                <label className="flex items-start gap-3 cursor-pointer group">
+                                    <input 
+                                        name="privacy"
+                                        type="checkbox" 
+                                        required 
+                                        className=" w-4 h-4 text-[#00396a] bg-white border-transparent rounded cursor-pointer" 
+                                    />
+                                    <span className="text-[12px] text-[#00396a] leading-tight">
+                                        Я согласен на обработку персональных данных
+                                    </span>
+                                </label>
+
+                                <label className="flex items-start gap-3 cursor-pointer group">
+                                    <input 
+                                        name="subscribe"
+                                        type="checkbox" 
+                                        className=" w-4 h-4 text-[#00396a] bg-white border-transparent rounded cursor-pointer" 
+                                    />
+                                    <span className="text-[12px] text-[#00396a] leading-tight">
+                                        Я согласен получать рассылку о скидках и новых функциях
+                                    </span>
+                                </label>
+                            </div>
+
+                            {/* Кнопка отправки */}
+                            <div className="flex justify-center pt-2">
+                                <Button 
+                                    type="submit"
+                                    variant="custom" 
+                                    className="w-full md:w-auto py-3 px-10 rounded-full font-bold transition-all duration-300 bg-white text-[#00396a] hover:shadow-lg active:scale-95"
+                                >
+                                    Получить доступ
+                                </Button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            </section>
 
-
-            {/* Блок чекбоксов — уменьшил межстрочный интервал */}
-            <div className="space-y-2 px-1">
-                <label className="flex items-start gap-3 cursor-pointer group">
-                    <input 
-                        name="privacy"
-                        type="checkbox" 
-                        required 
-                        className="w-4 h-4 text-[#00396a] border-gray-300 rounded cursor-pointer" 
-                    />
-                    <span className="text-[12px] text-gray-600 leading-tight group-hover:text-[#00396a] transition-colors">
-                        Я согласен на обработку персональных данных
-                    </span>
-                </label>
-
-                <label className="flex items-start gap-3 cursor-pointer group">
-                    <input 
-                        name="subscribe"
-                        type="checkbox" 
-                        className="w-4 h-4 text-[#00396a] border-gray-300 rounded cursor-pointer" 
-                    />
-                    <span className="text-[12px] text-gray-600 leading-tight group-hover:text-[#00396a] transition-colors">
-                        Я согласен получать рассылку о скидках и новых функциях
-                    </span>
-                </label>
-            </div>
-
-            {/* Кнопка отправки */}
-            <div className="flex justify-center pt-2">
-                <Button 
-                    variant="custom" 
-                    className="w-full md:w-auto py-3 px-10 rounded-full font-bold transition-all duration-300 bg-[#00396a] text-white hover:shadow-lg active:scale-95"
-                >
-                    Получить доступ
-                </Button>
-            </div>
-        </form>
-    </div>
-</section>
-{/* Modal Success */}
-{isSuccess && (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
-        {/* Backdrop (затемнение с блюром) */}
-        <div 
-            className="absolute inset-0 bg-[#00396a]/20 backdrop-blur-md transition-opacity"
-            onClick={() => setIsSuccess(false)}
-        ></div>
-
-        {/* Контент окна */}
-        <div className="relative bg-white rounded-[40px] shadow-2xl border-2 border-gray-100 p-8 md:p-12 max-w-sm w-full text-center animate-in fade-in zoom-in duration-300">
-            <div className="flex justify-center mb-6">
-                <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center">
-                    <SquareCheckBig size={48} className="text-blue-500" />
+            {/* --- UNIFIED MODAL SUCCESS --- */}
+            {isSuccess && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 backdrop-blur-md bg-[#00396a]/10">
+                    <div className="bg-white rounded-[40px] p-8 max-w-sm w-full text-center shadow-2xl border-2 border-gray-100 animate-in zoom-in duration-300">
+                        {/* Контейнер иконки с mx-auto для идеального центрирования */}
+                        <div className="flex justify-center mb-6">
+                            <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto">
+                                <SquareCheckBig size={48} className="text-[#00396a]" />
+                            </div>
+                        </div>
+                        
+                        <h3 className="text-xl font-extrabold text-[#00396a] mb-2">Заявка отправлена!</h3>
+                        <p className="text-gray-500 text-sm mb-6">Менеджер уже проверяет данные. Мы свяжемся с Вами в ближайшее время.</p>
+                        
+                        <Button 
+                            variant="custom" 
+                            onClick={() => setIsSuccess(false)} 
+                            className="w-full py-4 rounded-full font-bold bg-[#00396a] text-white hover:bg-[#002a4d] transition-all"
+                        >
+                            Отлично
+                        </Button>
+                    </div>
                 </div>
-            </div>
-            
-            <h3 className="text-2xl font-extrabold text-[#00396a] mb-2">Заявка отправлена!</h3>
-            <p className="text-gray-500 mb-8 leading-relaxed">
-                Мы свяжемся с Вами в ближайшее время.
-            </p>
-
-            <Button 
-                variant="custom" 
-                onClick={() => setIsSuccess(false)}
-                className="w-full py-4 rounded-full font-bold bg-[#00396a] text-white hover:bg-[#002a4d] transition-all"
-            >
-                Отлично
-            </Button>
-        </div>
-    </div>
-)}
+            )}
         </div>
     );
 };

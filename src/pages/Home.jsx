@@ -27,6 +27,7 @@ const Home = () => {
   const [comment, setComment] = React.useState('');
   const [phone, setPhone] = React.useState('');
   const [isSuccess, setIsSuccess] = React.useState(false);
+  const [activeRoleTab, setActiveRoleTab] = useState('au');
 
 
   const handlePhoneChange = (e) => {
@@ -102,11 +103,13 @@ const Home = () => {
         <div className="text-center max-w-5xl mx-auto mb-16">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-extrabold mb-6 leading-tight"
+            // ИЗМЕНЕНО: text-3xl для мобилки, md:text-5xl для десктопа
+            className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight"
           >
             ССПБ ID – единая платформа сервисов для сопровождения процедур банкротства
           </motion.h1>
-          <p className="text-2xl mb-8">
+          {/* ИЗМЕНЕНО: text-lg для мобилки, md:text-2xl для десктопа */}
+          <p className="text-lg md:text-2xl mb-8 text-[#00396a] md:text-[#00396a]">
             Страхование, банковское обслуживание, финансовый анализ сделок должников, публикации в «Ъ» и управление процедурами – все на одной платформе с единым входом
           </p>
         </div>
@@ -122,7 +125,7 @@ const Home = () => {
               gradient: "from-[#215e5e] to-[#7CE2E2]",
               shadowColor: "#215e5e",
               // Самый большой — ограничиваем высоту чуть сильнее, чтобы не доминировал
-              logoHeight: "h-24", 
+              logoHeight: "h-22 mt-1", 
               logoShadow: "drop-shadow(0 15px 25px rgba(17, 0, 53, 0.5))"
             },
             { 
@@ -133,7 +136,7 @@ const Home = () => {
               gradient: "from-[#611885] to-[#BB7FE5]",
               shadowColor: "#611885",
               // Самый маленький — даем ему максимум высоты, чтобы он подтянулся к остальным
-              logoHeight: "h-8", 
+              logoHeight: "h-9 mt-8", 
               logoShadow: "drop-shadow(0 15px 25px rgba(6, 0, 17, 0.5))"
             },
             { 
@@ -144,7 +147,7 @@ const Home = () => {
               gradient: "from-[#cc0011] to-[#1A00FF]",
               shadowColor: "#1A00FF",
               // Средний — золотая середина
-              logoHeight: "h-24", 
+              logoHeight: "h-24 mt-3", 
               logoShadow: "drop-shadow(0 15px 25px rgba(17, 0, 53, 0.5))"
             },
           ].map((card, idx) => (
@@ -158,7 +161,7 @@ const Home = () => {
             >
               {/* Иконка в белом круге с прозрачностью */}
               {/* Логотип: сохраняет пропорции, ограничен по высоте и ширине */}
-              <div className="mb-8 h-24 flex items-center justify-start">
+              <div className="mb-8 h-24 flex items-center justify-center">
                 <img
                   src={card.icon}
                   alt={card.title}
@@ -170,7 +173,7 @@ const Home = () => {
                 />
               </div>
                           
-              <p className="text-lg md:text-md text-white mb-8 flex-grow whitespace-pre-line">{card.desc}</p>
+              <p className="text-xl md:text-md text-white text-center mb-8 flex-grow whitespace-pre-line">{card.desc}</p>
               
               {/* Обновленная кнопка "Подробнее" */}
               {/* mx-auto центрирует кнопку, px-8 задает компактную ширину по тексту */}
@@ -185,11 +188,13 @@ const Home = () => {
         </div>
       </section>
 
-      <section id="ecosystem" className="bg-[#1976d2] py-20 rounded-[40px] mb-20 shadow-sm mx-4">
+      <section id="ecosystem" className="bg-[#1976d2] py-10 rounded-[40px] mb-20 shadow-sm mx-4">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-extrabold text-center text-white mb-12">Платформа продуктов ССПБ ID</h2>
+          <h2 className="text-2xl md:text-4xl font-extrabold text-center text-white mb-8">
+            Платформа продуктов <br className="block md:hidden" /> ССПБ ID
+        </h2>
           
-          <div className="flex justify-center mb-12 flex-wrap gap-2">
+          <div className="flex justify-center mb-8 flex-wrap gap-2">
             {Object.keys(tabsData).map((key) => (
               <button
                 key={key}
@@ -244,152 +249,214 @@ const Home = () => {
 
       {/* Roles Section */}
       <section className="max-w-7xl mx-auto px-4 mb-20">
-        <h2 className="text-2xl md:text-4xl font-extrabold text-center text-[#00396a] mb-12">Платформа ССПБ ID — это готовые решения для каждого</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-            <RoleCard 
-                title="Арбитражным управляющим" 
-                icon={Users}
-                points={["Полный контроль процедур", "Страхование через единый интерфейс", "Автоматизация публикаций"]} 
-            />
-            <RoleCard 
-                title="Страховым компаниям и банкам" 
-                icon={Briefcase}
-                points={["Анализ рисков", "Прямой доступ к клиентам"]} 
-            />
-            <RoleCard 
-                title="Командам сопровождения" 
-                icon={Award}
-                points={["Управление командой", "Выявление аномалий по сделкам", "Генерация отчетов"]} 
-            />
-        </div>
+        <h2 className="text-2xl md:text-4xl font-extrabold text-center text-[#00396a] mb-8 md:mb-12">
+            Платформа ССПБ ID — это готовые решения для каждого
+        </h2>
+
+        {(() => {
+            // Выносим данные в массив для удобного рендера и в мобилке, и на десктопе
+            const rolesData = [
+                {
+                    id: 'au',
+                    title: "Арбитражным управляющим",
+                    icon: Users,
+                    points: ["Полный контроль процедур", "Страхование через единый интерфейс", "Автоматизация публикаций"]
+                },
+                {
+                    id: 'insurance',
+                    title: "Страховым компаниям и банкам",
+                    icon: Briefcase,
+                    points: ["Анализ рисков", "Прямой доступ к клиентам"]
+                },
+                {
+                    id: 'team',
+                    title: "Командам сопровождения",
+                    icon: Award,
+                    points: ["Управление командой", "Выявление аномалий по сделкам", "Генерация отчетов"]
+                }
+            ];
+
+            const activeRole = rolesData.find(r => r.id === activeRoleTab);
+
+            return (
+                <>
+                    {/* --- МОБИЛЬНАЯ ВЕРСИЯ (Табы + 1 Карточка) --- */}
+                    <div className="md:hidden">
+                        {/* Табы друг под другом */}
+                        <div className="flex flex-col items-center gap-3 mb-8">
+                            {rolesData.map((role) => (
+                                <button
+                                    key={role.id}
+                                    onClick={() => setActiveRoleTab(role.id)}
+                                    className={`px-6 py-3 rounded-full font-semibold transition-all text-center text-sm ${
+                                        activeRoleTab === role.id 
+                                            ? 'bg-[#00396a] text-white shadow-lg' 
+                                            : 'bg-gray-100 text-[#00396a] hover:bg-gray-200'
+                                    }`}
+                                >
+                                    {role.title}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Анимированная карточка для мобилки */}
+                        <motion.div
+                            key={activeRole.id} // Изменение key заставляет анимацию проигрываться заново
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <RoleCard 
+                                title={activeRole.title} 
+                                icon={activeRole.icon} 
+                                points={activeRole.points} 
+                            />
+                        </motion.div>
+                    </div>
+
+                    {/* --- ДЕСКТОПНАЯ ВЕРСИЯ (Сетка из 3 карточек) --- */}
+                    <div className="hidden md:grid md:grid-cols-3 gap-8">
+                        {rolesData.map((role) => (
+                            <RoleCard 
+                                key={role.id}
+                                title={role.title} 
+                                icon={role.icon} 
+                                points={role.points} 
+                            />
+                        ))}
+                    </div>
+                </>
+            );
+        })()}
       </section>
 
      {/* Lead Form */}
-      <section className="max-w-2xl bg-white py-8 mx-auto rounded-[32px] border-4 border-[#00396a] relative overflow-hidden shadow-xl">
-    {/* Декоративный элемент — уменьшил размер */}
-    <div className="absolute -top-16 -right-16 w-48 h-48 bg-blue-50 rounded-full pointer-events-none blur-3xl"></div>
-    
-    <div className="max-w-lg mx-auto px-6 relative z-10"> 
-        <div className="text-center mb-6">
-            <h2 className="text-2xl md:text-3xl font-extrabold text-[#00396a] mb-2">Готовы начать?</h2>
-            <p className="text-gray-500 text-base">Оставьте заявку для получения доступа</p>
-        </div>
-        
-        <form onSubmit={handleFormSubmit} className="w-full space-y-4">
-            {/* Имя */}
-            <input 
-                name="name" 
-                required 
-                type="text" 
-                className="w-full px-5 py-3 rounded-xl bg-gray-50 border-2 border-[#00396a]/70 text-gray-900 placeholder-gray-400 outline-none focus:border-[#00396a] focus:bg-white transition-all text-sm" 
-                placeholder="Ваше Имя" 
-            />
+      {/* --- UNIFIED LEAD FORM --- */}
+            <section className="max-w-2xl mx-auto px-4 mb-5">
+                <div className="bg-[#c0dcf7] py-8 px-6 md:px-10 rounded-[32px] relative overflow-hidden shadow-xl">
+                    {/* Декоративный элемент */}
+                    <div className="absolute -top-16 -right-16 w-48 h-48 bg-white/40 rounded-full pointer-events-none blur-3xl"></div>
+                    
+                    <div className="relative z-10"> 
+                        <div className="text-center mb-6">
+                            <h2 className="text-2xl md:text-3xl font-extrabold text-[#00396a] mb-2">Готовы начать?</h2>
+                            <p className="text-[#00396a] text-sm md:text-base">Оставьте заявку для получения доступа</p>
+                        </div>
+                        
+                        <form onSubmit={handleFormSubmit} className="w-full space-y-4">
+                            {/* Имя */}
+                            <input 
+                                name="name" 
+                                required 
+                                type="text" 
+                                className="w-full px-5 py-3 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#00396a]/50 focus:bg-white transition-all text-sm" 
+                                placeholder="Ваше Имя" 
+                            />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input 
-                    name="phone" 
-                    required 
-                    type="tel" 
-                    value={phone}
-                    onChange={handlePhoneChange}
-                    className="w-full px-5 py-3 rounded-xl bg-gray-50 border-2 border-[#00396a]/70 text-gray-900 placeholder-gray-400 outline-none focus:border-[#00396a] focus:bg-white transition-all text-sm" 
-                    placeholder="+7 (___) ___-__-__" 
-                />
-                <input 
-                    name="email" 
-                    required 
-                    type="email" 
-                    className="w-full px-5 py-3 rounded-xl bg-gray-50 border-2 border-[#00396a]/70 text-gray-900 placeholder-gray-400 outline-none focus:border-[#00396a] focus:bg-white transition-all text-sm" 
-                    placeholder="Email" 
-                />
-            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <input 
+                                    name="phone" 
+                                    required 
+                                    type="tel" 
+                                    value={phone}
+                                    onChange={handlePhoneChange}
+                                    className="w-full px-5 py-3 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#00396a]/50 focus:bg-white transition-all text-sm" 
+                                    placeholder="+7 (___) ___-__-__" 
+                                />
+                                <input 
+                                    name="email" 
+                                    required 
+                                    type="email" 
+                                    className="w-full px-5 py-3 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#00396a]/50 focus:bg-white transition-all text-sm" 
+                                    placeholder="Email" 
+                                />
+                            </div>
 
-            {/* Комментарий — уменьшил высоту (h-24 вместо h-32) */}
-            <div className="relative">
-                <textarea 
-                    name="comment"
-                    maxLength={100}
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                    className="w-full px-5 py-3 rounded-xl bg-gray-50 border-2 border-[#00396a]/70 text-gray-900 placeholder-gray-400 outline-none focus:border-[#00396a] focus:bg-white transition-all resize-none h-24 text-sm"
-                    placeholder="Ваш комментарий (опционально)"
-                ></textarea>
-                <div className={`absolute bottom-2 right-3 text-[10px] font-medium ${comment.length >= 100 ? 'text-red-500' : 'text-gray-400'}`}>
-                    {comment.length} / 100
+                            {/* Комментарий */}
+                            <div className="relative">
+                                <textarea 
+                                    name="comment"
+                                    maxLength={100}
+                                    value={comment}
+                                    onChange={(e) => setComment(e.target.value)}
+                                    className="w-full px-5 py-3 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#00396a]/50 focus:bg-white transition-all resize-none h-24 text-sm"
+                                    placeholder="Ваш комментарий (опционально)"
+                                ></textarea>
+                                <div className={`absolute bottom-2 right-3 text-[10px] font-medium ${comment.length >= 100 ? 'text-red-500' : 'text-gray-400'}`}>
+                                    {comment.length} / 100
+                                </div>
+                            </div>
+
+                            {/* Turnstile */}
+                            <div className="flex justify-center scale-90 origin-center py-1">
+                                <div className="cf-turnstile" data-sitekey="YOUR_SITE_KEY_HERE"></div>
+                            </div>
+
+                            {/* Блок чекбоксов */}
+                            <div className="space-y-2 px-1">
+                                <label className="flex items-start gap-3 cursor-pointer group">
+                                    <input 
+                                        name="privacy"
+                                        type="checkbox" 
+                                        required 
+                                        className=" w-4 h-4 text-[#00396a] bg-white border-transparent rounded cursor-pointer" 
+                                    />
+                                    <span className="text-[12px] text-[#00396a] leading-tight">
+                                        Я согласен на обработку персональных данных
+                                    </span>
+                                </label>
+
+                                <label className="flex items-start gap-3 cursor-pointer group">
+                                    <input 
+                                        name="subscribe"
+                                        type="checkbox" 
+                                        className=" w-4 h-4 text-[#00396a] bg-white border-transparent rounded cursor-pointer" 
+                                    />
+                                    <span className="text-[12px] text-[#00396a] leading-tight">
+                                        Я согласен получать рассылку о скидках и новых функциях
+                                    </span>
+                                </label>
+                            </div>
+
+                            {/* Кнопка отправки */}
+                            <div className="flex justify-center pt-2">
+                                <Button 
+                                    type="submit"
+                                    variant="custom" 
+                                    className="w-full md:w-auto py-3 px-10 rounded-full font-bold transition-all duration-300 bg-white text-[#00396a] hover:shadow-lg active:scale-95"
+                                >
+                                    Получить доступ
+                                </Button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
+            </section>
 
-
-            {/* Блок чекбоксов — уменьшил межстрочный интервал */}
-            <div className="space-y-2 px-1">
-                <label className="flex items-start gap-3 cursor-pointer group">
-                    <input 
-                        name="privacy"
-                        type="checkbox" 
-                        required 
-                        className="w-4 h-4 text-[#00396a] border-gray-300 rounded cursor-pointer" 
-                    />
-                    <span className="text-[12px] text-gray-600 leading-tight group-hover:text-[#00396a] transition-colors">
-                        Я согласен на обработку персональных данных
-                    </span>
-                </label>
-
-                <label className="flex items-start gap-3 cursor-pointer group">
-                    <input 
-                        name="subscribe"
-                        type="checkbox" 
-                        className="w-4 h-4 text-[#00396a] border-gray-300 rounded cursor-pointer" 
-                    />
-                    <span className="text-[12px] text-gray-600 leading-tight group-hover:text-[#00396a] transition-colors">
-                        Я согласен получать рассылку о скидках и новых функциях
-                    </span>
-                </label>
-            </div>
-
-            {/* Кнопка отправки */}
-            <div className="flex justify-center pt-2">
-                <Button 
-                    variant="custom" 
-                    className="w-full md:w-auto py-3 px-10 rounded-full font-bold transition-all duration-300 bg-[#00396a] text-white hover:shadow-lg active:scale-95"
-                >
-                    Получить доступ
-                </Button>
-            </div>
-        </form>
-    </div>
-</section>
-{/* Modal Success */}
-{isSuccess && (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
-        {/* Backdrop (затемнение с блюром) */}
-        <div 
-            className="absolute inset-0 bg-[#00396a]/20 backdrop-blur-md transition-opacity"
-            onClick={() => setIsSuccess(false)}
-        ></div>
-
-        {/* Контент окна */}
-        <div className="relative bg-white rounded-[40px] shadow-2xl border-2 border-gray-100 p-8 md:p-12 max-w-sm w-full text-center animate-in fade-in zoom-in duration-300">
-            <div className="flex justify-center mb-6">
-                <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center">
-                    <SquareCheckBig size={48} className="text-blue-500" />
+            {/* --- UNIFIED MODAL SUCCESS --- */}
+            {isSuccess && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 backdrop-blur-md bg-[#00396a]/10">
+                    <div className="bg-white rounded-[40px] p-8 max-w-sm w-full text-center shadow-2xl border-2 border-gray-100 animate-in zoom-in duration-300">
+                        {/* Контейнер иконки с mx-auto для идеального центрирования */}
+                        <div className="flex justify-center mb-6">
+                            <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto">
+                                <SquareCheckBig size={48} className="text-[#00396a]" />
+                            </div>
+                        </div>
+                        
+                        <h3 className="text-xl font-extrabold text-[#00396a] mb-2">Заявка отправлена!</h3>
+                        <p className="text-gray-500 text-sm mb-6">Менеджер уже проверяет данные. Мы свяжемся с Вами в ближайшее время.</p>
+                        
+                        <Button 
+                            variant="custom" 
+                            onClick={() => setIsSuccess(false)} 
+                            className="w-full py-4 rounded-full font-bold bg-[#00396a] text-white hover:bg-[#002a4d] transition-all"
+                        >
+                            Отлично
+                        </Button>
+                    </div>
                 </div>
-            </div>
-            
-            <h3 className="text-2xl font-extrabold text-[#00396a] mb-2">Заявка отправлена!</h3>
-            <p className="text-gray-500 mb-8 leading-relaxed">
-                Мы свяжемся с Вами в ближайшее время.
-            </p>
-
-            <Button 
-                variant="custom" 
-                onClick={() => setIsSuccess(false)}
-                className="w-full py-4 rounded-full font-bold bg-[#00396a] text-white hover:bg-[#002a4d] transition-all"
-            >
-                Отлично
-            </Button>
-        </div>
-    </div>
-)}
+            )}
     </div>
   );
 };

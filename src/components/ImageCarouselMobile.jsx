@@ -35,10 +35,10 @@ const ImageCarouselMobile = ({ images }) => {
 
   return (
     <div className="w-full px-0 my-6">
-      <div className="bg-white rounded-[32px] shadow-soft p-3 border border-white/50 relative">
+      <div className="bg-white rounded-[32px] shadow-soft py-3 border border-white/50 relative">
         
         {/* Контейнер изображения (Высота чуть меньше, чем на десктопе, но достаточная) */}
-        <div className="relative w-full h-[280px] rounded-2xl overflow-hidden shadow-inner bg-gray-50">
+        <div className="relative w-full h-[280px] rounded-4xl overflow-hidden shadow-inner bg-gray-50">
           <AnimatePresence initial={false} custom={direction}>
             <motion.img
               key={page}

@@ -70,6 +70,11 @@ const ProductPageMobile = () => {
                 nameButtonHeader: "Получить расчет",
                 howItWorks: 'Заполните одну заявку и получите расчет стоимости сразу по всем страховым компаниям. Стоимость договора такая же, как в страховой компании.',
                 carouselImages: [sbSlide2, sbSlide1],
+                theme: {
+                    gradient: "bg-gradient-to-r from-[#0d3b3b] to-[#28b8b8]",
+                    colorButton: "bg-[#215e5e]",
+                    textShadow: "shadow-[#215e5e]/20"
+                },
                 features: [
                     { title: "Индивидуально", text: "Персональный менеджер поможет в оформлении необходимых документов в кратчайшие сроки." },
                     { title: "Быстро", text: "Вы получите расчет стоимости договора страхования сразу по всем СК, аккредитованным при Вашем СРО." },
@@ -88,18 +93,23 @@ const ProductPageMobile = () => {
                 nameButtonHeader: "Проанализировать",
                 howItWorks: 'Загрузите банковские выписки предприятия и получите персонализированный дашборд \nс информацией по каждому платежу. Сервис автоматически выявит риски \nи сформирует отчетность.',
                 carouselImages: [aiSlide1, aiSlide2, aiSlide3],
+                theme: {
+                    gradient: "bg-gradient-to-r from-[#31054a] via-[#611885] to-[#e0aaff]",
+                    colorButton: "bg-[#52097d]",
+                    textShadow: "shadow-[#611885]/20"
+                },
                 features: [
-                    { title: "Минимизация ошибок", text: "Меньше ошибок благодаря отказу от “ручной”\nобработки документов." },
-                    { title: "Безопасность данных", text: "Обработка данных на собственных серверах, защищённых по ISO 27001, исключает\nвозможность «утечек»." },
-                    { title: "Универсальность", text: "Обработка разных форматов документов (выгрузки из 1C, Excel, Word и PDF, включая сканы)." },
                     { title: "Экономия времени", text: "Автоматический анализ \nи отчеты." },
+                    { title: "Универсальность", text: "Обработка разных форматов документов (выгрузки\nиз 1C, Excel, Word и PDF, включая сканы)." },
                     { title: "«Умный» анализ", text: "Быстрое выявление подозрительных сделок." },
+                    { title: "Минимизация ошибок", text: "Меньше ошибок благодаря\nотказу от “ручной” обработки документов." },
+                    { title: "Безопасность данных", text: "Обработка данных\nна собственных серверах, защищённых по ISO 27001, исключает\nвозможность «утечек»." },
                 ]
             },
             'au-publicator': {
                 title: 'АУ-Публикатор',
                 slogan: 'Не мучайтесь с публикациями в “Ъ”',
-                desc: 'Первый бесплатный сервис для автоматизированной публикации юридически корректных сообщений в “Коммерсантъ” за считанные минуты.',
+                desc: 'Первый бесплатный сервис для автоматизированной публикации юридически корректных сообщений в “КоммерсантЪ” за считанные минуты.',
                 heroImage: 'https://placehold.co/800x600/e2e8f0/1e293b?text=Publicator+Hero',
                 siteUrl: 'https://au-publicator.ru',
                 siteUrlSSPBID: 'https://passport.sspb.ru/',
@@ -107,6 +117,11 @@ const ProductPageMobile = () => {
                 nameButtonHeader: "Создать публикацию",
                 howItWorks: 'Создайте заявку всего за 7 шагов: от выбора типа публикации до проверки сгенерированного текста.',
                 carouselImages: [auSlide1, auSlide2, auSlide3, auSlide4, auSlide5, auSlide6],
+                theme: {
+                    gradient: "bg-gradient-to-r from-[#cc0011] to-[#1a00ff]",
+                    colorButton: "bg-[#AF3552]",
+                    textShadow: "shadow-[#1A00FF]/20"
+                },
                 features: [
                     { title: "Экономия времени", text: "Создайте заявку на публикацию всего за 7 шагов." },
                     { title: "Автоматизация", text: "Введите ИНН — остальное загрузится само." },
@@ -142,11 +157,11 @@ const ProductPageMobile = () => {
             {/* Mobile Hero */}
             <section className="px-4 mb-16 pt-6">
                 <div className="text-center mb-8">
-                    <span className="text-primary font-extrabold text-4xl mb-2 block">{data.title}</span>
-                    <h1 className="text-2xl font-extrabold mb-4 leading-tight text-[#00396a]">{data.slogan}</h1>
-                    <p className="text-lg text-neutral mb-8">{data.desc}</p>
+                    <span className={`text-primary font-extrabold text-4xl mb-2 block bg-gradient-to-r ${data.theme.gradient} bg-clip-text text-transparent`}>{data.title}</span>
+                    <h1 className={`text-2xl font-extrabold mb-4 leading-tight text-[#00396a] bg-gradient-to-r ${data.theme.gradient} bg-clip-text text-transparent`}>{data.slogan}</h1>
+                    <p className={`text-lg text-neutral mb-8 bg-gradient-to-r ${data.theme.gradient} bg-clip-text text-transparent `}>{data.desc}</p>
                     <div className="flex flex-col gap-3">
-                        <Button variant="custom" className="bg-[#00396a] text-white w-full py-4 text-lg" href={data.siteUrlSSPBID} target="_blank">{data.nameButtonHeader}</Button>
+                        <Button variant="custom" className={`${data.theme.colorButton} text-white w-full py-4 text-lg`} href={data.siteUrlSSPBID} target="_blank">{data.nameButtonHeader}</Button>
                         <Button variant="custom" className="bg-white text-[#00396a] border-2 border-gray-100 w-full py-4 text-lg" onClick={() => document.getElementById('how').scrollIntoView({ behavior: 'smooth' })}>Как это работает</Button>
                     </div>
                 </div>
@@ -156,7 +171,7 @@ const ProductPageMobile = () => {
                 <h2 className="text-2xl font-extrabold text-center text-[#00396a] mb-8">Ключевые возможности</h2>
                 <div className="grid gap-4">
                     {data.features.map((feat, i) => (
-                        <div key={i} className="bg-[#c0dcf7] p-6 rounded-3xl shadow-sm">
+                        <div key={i} className="bg-[#c0dcf7]/50 p-6 rounded-3xl shadow-sm">
                             <h3 className="text-lg font-bold mb-2 text-[#00396a]">{feat.title}</h3>
                             <p className="text-base text-[#00396a]">{feat.text}</p>
                         </div>
@@ -233,68 +248,148 @@ const ProductPageMobile = () => {
 
             {/* Mobile How it works */}
             <section id="how" className="bg-[#1976d2] py-12 rounded-[32px] mx-4 mb-16 shadow-lg">
-                <div className="px-4 text-center mb-8">
-                    <h2 className="text-2xl font-extrabold text-white mb-4">Как это работает?</h2>
-                    <p className="text-lg text-white/90">{data.howItWorks}</p>
-                </div>
-                {/* Карусель (она уже адаптивна) */}
-                <ImageCarousel images={data.carouselImages} variant="compact" fit="contain" />
-                <div className="px-4 mt-8">
-                    <Button variant="custom" className="bg-white text-[#00396a] w-full py-4 text-lg" href="https://id.sspb.ru">{data.nameButton}</Button>
-                </div>
-            </section>
+    <div className="px-4 text-center mb-8">
+        <h2 className="text-2xl font-extrabold text-white mb-4">Как это работает?</h2>
+        <p className="text-lg text-white/90">{data.howItWorks}</p>
+    </div>
+    
+    {/* Добавили обертку px-4 для карусели, чтобы появились синие края */}
+    <div className="px-4 relative">
+        <ImageCarousel images={data.carouselImages} variant="compact" fit="contain" />
+    </div>
+    
+    <div className="px-4 mt-8">
+        <Button variant="custom" className="bg-white text-[#00396a] w-full py-4 text-lg" href="https://id.sspb.ru">{data.nameButton}</Button>
+    </div>
+</section>
 
             {/* Mobile Features (1 колонка) */}
             
 
             {/* Mobile Form (Light Mode) */}
-            <section className="bg-white py-8 mx-4 rounded-[32px] border-4 border-[#00396a] relative shadow-xl overflow-hidden">
-                <div className="absolute -top-16 -right-16 w-48 h-48 bg-blue-50 rounded-full blur-3xl"></div>
-                
-                <div className="relative z-10 px-6">
-                    <div className="text-center mb-2">
-                        <h2 className="text-2xl font-extrabold text-[#00396a] mb-0.5">Готовы начать?</h2>
-                        <p className="text-gray-500 text-sm">Оставьте заявку для получения доступа</p>
-                    </div>
+            {/* --- UNIFIED LEAD FORM --- */}
+            <section className="max-w-2xl mx-auto px-4 mb-5">
+                <div className="bg-[#c0dcf7] py-8 px-6 md:px-10 rounded-[32px] relative overflow-hidden shadow-xl">
+                    {/* Декоративный элемент */}
+                    <div className="absolute -top-16 -right-16 w-48 h-48 bg-white/40 rounded-full pointer-events-none blur-3xl"></div>
                     
-                    <form onSubmit={handleFormSubmit} className="space-y-3">
-                        <input name="name" required className="w-full px-5 py-3 rounded-xl bg-gray-50 border-2 border-[#00396a]/30 text-gray-900 placeholder-gray-400 focus:border-[#00396a] outline-none text-sm transition-all" placeholder="Ваше Имя" />
-                        <input name="phone" required type="tel" value={phone} onChange={handlePhoneChange} className="w-full px-5 py-3 rounded-xl bg-gray-50 border-2 border-[#00396a]/30 text-gray-900 placeholder-gray-400 focus:border-[#00396a] outline-none text-sm transition-all" placeholder="+7 (___) ___-__-__" />
-                        <input name="email" required type="email" className="w-full px-5 py-3 rounded-xl bg-gray-50 border-2 border-[#00396a]/30 text-gray-900 placeholder-gray-400 focus:border-[#00396a] outline-none text-sm transition-all" placeholder="Email" />
+                    <div className="relative z-10"> 
+                        <div className="text-center mb-6">
+                            <h2 className="text-2xl md:text-3xl font-extrabold text-[#00396a] mb-2">Готовы начать?</h2>
+                            <p className="text-[#00396a] text-sm md:text-base">Оставьте заявку для получения доступа</p>
+                        </div>
                         
-                        <div className="relative">
-                            <textarea name="comment" maxLength={100} value={comment} onChange={(e) => setComment(e.target.value)} className="w-full px-5 py-3 rounded-xl bg-gray-50 border-2 border-[#00396a]/30 text-gray-900 placeholder-gray-400 focus:border-[#00396a] outline-none h-20 resize-none text-sm transition-all" placeholder="Ваш комментарий (опционально)"></textarea>
-                            <span className="absolute bottom-2 right-3 text-[10px] text-gray-400">{comment.length}/100</span>
-                        </div>
+                        <form onSubmit={handleFormSubmit} className="w-full space-y-4">
+                            {/* Имя */}
+                            <input 
+                                name="name" 
+                                required 
+                                type="text" 
+                                className="w-full px-5 py-3 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#00396a]/50 focus:bg-white transition-all text-sm" 
+                                placeholder="Ваше Имя" 
+                            />
 
-                        <div className="space-y-2">
-                            <label className="flex items-start gap-3 cursor-pointer">
-                                <input name="privacy" type="checkbox" required className=" w-4 h-4 text-[#00396a] border-gray-300 rounded" />
-                                <span className="text-[11px] text-gray-600 leading-tight">Я согласен на обработку персональных данных</span>
-                            </label>
-                            <label className="flex items-start gap-3 cursor-pointer">
-                                <input name="subscribe" type="checkbox" className=" w-4 h-4 text-[#00396a] border-gray-300 rounded" />
-                                <span className="text-[11px] text-gray-600 leading-tight">Я согласен получать рассылку о скидках</span>
-                            </label>
-                        </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <input 
+                                    name="phone" 
+                                    required 
+                                    type="tel" 
+                                    value={phone}
+                                    onChange={handlePhoneChange}
+                                    className="w-full px-5 py-3 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#00396a]/50 focus:bg-white transition-all text-sm" 
+                                    placeholder="+7 (___) ___-__-__" 
+                                />
+                                <input 
+                                    name="email" 
+                                    required 
+                                    type="email" 
+                                    className="w-full px-5 py-3 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#00396a]/50 focus:bg-white transition-all text-sm" 
+                                    placeholder="Email" 
+                                />
+                            </div>
 
-                        <Button type="submit" variant="custom" className="w-full bg-[#00396a] text-white py-4 rounded-full font-bold shadow-lg">Получить доступ</Button>
-                    </form>
+                            {/* Комментарий */}
+                            <div className="relative">
+                                <textarea 
+                                    name="comment"
+                                    maxLength={100}
+                                    value={comment}
+                                    onChange={(e) => setComment(e.target.value)}
+                                    className="w-full px-5 py-3 rounded-xl bg-gray-50 text-gray-900 placeholder-gray-400 outline-none focus:ring-2 focus:ring-[#00396a]/50 focus:bg-white transition-all resize-none h-24 text-sm"
+                                    placeholder="Ваш комментарий (опционально)"
+                                ></textarea>
+                                <div className={`absolute bottom-2 right-3 text-[10px] font-medium ${comment.length >= 100 ? 'text-red-500' : 'text-gray-400'}`}>
+                                    {comment.length} / 100
+                                </div>
+                            </div>
+
+                            {/* Turnstile */}
+                            <div className="flex justify-center scale-90 origin-center py-1">
+                                <div className="cf-turnstile" data-sitekey="YOUR_SITE_KEY_HERE"></div>
+                            </div>
+
+                            {/* Блок чекбоксов */}
+                            <div className="space-y-2 px-1">
+                                <label className="flex items-start gap-3 cursor-pointer group">
+                                    <input 
+                                        name="privacy"
+                                        type="checkbox" 
+                                        required 
+                                        className=" w-4 h-4 text-[#00396a] bg-white border-transparent rounded cursor-pointer" 
+                                    />
+                                    <span className="text-[12px] text-[#00396a] leading-tight">
+                                        Я согласен на обработку персональных данных
+                                    </span>
+                                </label>
+
+                                <label className="flex items-start gap-3 cursor-pointer group">
+                                    <input 
+                                        name="subscribe"
+                                        type="checkbox" 
+                                        className=" w-4 h-4 text-[#00396a] bg-white border-transparent rounded cursor-pointer" 
+                                    />
+                                    <span className="text-[12px] text-[#00396a] leading-tight">
+                                        Я согласен получать рассылку о скидках и новых функциях
+                                    </span>
+                                </label>
+                            </div>
+
+                            {/* Кнопка отправки */}
+                            <div className="flex justify-center pt-2">
+                                <Button 
+                                    type="submit"
+                                    variant="custom" 
+                                    className="w-full md:w-auto py-3 px-10 rounded-full font-bold transition-all duration-300 bg-white text-[#00396a] hover:shadow-lg active:scale-95"
+                                >
+                                    Получить доступ
+                                </Button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </section>
 
-            {/* Modal Success */}
+            {/* --- UNIFIED MODAL SUCCESS --- */}
             {isSuccess && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center px-4 backdrop-blur-md bg-[#00396a]/10">
                     <div className="bg-white rounded-[40px] p-8 max-w-sm w-full text-center shadow-2xl border-2 border-gray-100 animate-in zoom-in duration-300">
-                        <div className="flex justify-center mb-6"> {/* Этот контейнер помогает, но mx-auto надежнее */}
+                        {/* Контейнер иконки с mx-auto для идеального центрирования */}
+                        <div className="flex justify-center mb-6">
                             <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center mx-auto">
-                                <SquareCheckBig size={48} className="text-blue-500" />
+                                <SquareCheckBig size={48} className="text-[#00396a]" />
                             </div>
                         </div>
+                        
                         <h3 className="text-xl font-extrabold text-[#00396a] mb-2">Заявка отправлена!</h3>
-                        <p className="text-gray-500 text-sm mb-6">Мы свяжемся с Вами в ближайшее время.</p>
-                        <Button variant="custom" onClick={() => setIsSuccess(false)} className="w-full py-4 rounded-full bg-[#00396a] text-white font-bold">Отлично</Button>
+                        <p className="text-gray-500 text-sm mb-6">Менеджер уже проверяет данные. Мы свяжемся с Вами в ближайшее время.</p>
+                        
+                        <Button 
+                            variant="custom" 
+                            onClick={() => setIsSuccess(false)} 
+                            className="w-full py-4 rounded-full font-bold bg-[#00396a] text-white hover:bg-[#002a4d] transition-all"
+                        >
+                            Отлично
+                        </Button>
                     </div>
                 </div>
             )}
