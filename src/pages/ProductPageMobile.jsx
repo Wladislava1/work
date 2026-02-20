@@ -99,12 +99,11 @@ const ProductPageMobile = () => {
                     textShadow: "shadow-[#611885]/20"
                 },
                 features: [
-                    { title: "Экономия времени", text: "Автоматический анализ \nи отчеты." },
-                    { title: "Универсальность", text: "Обработка разных форматов документов (выгрузки\nиз 1C, Excel, Word и PDF, включая сканы)." },
-                    { title: "«Умный» анализ", text: "Быстрое выявление подозрительных сделок." },
-                    { title: "Минимизация ошибок", text: "Меньше ошибок благодаря\nотказу от “ручной” обработки документов." },
-                    { title: "Безопасность данных", text: "Обработка данных\nна собственных серверах, защищённых по ISO 27001, исключает\nвозможность «утечек»." },
-                ]
+                { title: "Экономия времени", text: "Быстрое выявление подозрительных сделок, автоматический анализ и отчеты." },
+                { title: "Универсальность", text: "Обработка разных форматов документов (выгрузки\nиз 1C, Excel, Word и PDF, включая сканы)." },
+                { title: "Минимизация ошибок", text: "Меньше ошибок благодаря\nотказу от “ручной” обработки документов." },
+                { title: "Безопасность данных", text: "Обработка данных\nна собственных серверах, защищённых по ISO 27001, исключает\nвозможность «утечек»." },
+            ]
             },
             'au-publicator': {
                 title: 'АУ-Публикатор',
@@ -157,11 +156,11 @@ const ProductPageMobile = () => {
             {/* Mobile Hero */}
             <section className="px-4 mb-16 pt-6">
                 <div className="text-center mb-8">
-                    <span className={`text-primary font-extrabold text-4xl mb-2 block bg-gradient-to-r ${data.theme.gradient} bg-clip-text text-transparent`}>{data.title}</span>
-                    <h1 className={`text-2xl font-extrabold mb-4 leading-tight text-[#00396a] bg-gradient-to-r ${data.theme.gradient} bg-clip-text text-transparent`}>{data.slogan}</h1>
-                    <p className={`text-lg text-neutral mb-8 bg-gradient-to-r ${data.theme.gradient} bg-clip-text text-transparent `}>{data.desc}</p>
+                    <span className={`text-primary font-extrabold text-4xl mb-2 block text-[#00396a]`}>{data.title}</span>
+                    <h1 className={`text-2xl font-extrabold mb-4 leading-tight text-[#00396a]`}>{data.slogan}</h1>
+                    <p className={`text-lg text-neutral mb-8 text-[#00396a]`}>{data.desc}</p>
                     <div className="flex flex-col gap-3">
-                        <Button variant="custom" className={`${data.theme.colorButton} text-white w-full py-4 text-lg`} href={data.siteUrlSSPBID} target="_blank">{data.nameButtonHeader}</Button>
+                        <Button variant="custom" className={`bg-[#00396a] text-white w-full py-4 text-lg`} href={data.siteUrlSSPBID} target="_blank">{data.nameButtonHeader}</Button>
                         <Button variant="custom" className="bg-white text-[#00396a] border-2 border-gray-100 w-full py-4 text-lg" onClick={() => document.getElementById('how').scrollIntoView({ behavior: 'smooth' })}>Как это работает</Button>
                     </div>
                 </div>

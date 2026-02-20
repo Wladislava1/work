@@ -97,11 +97,10 @@ const ProductPageDesktop = () => {
                 textShadow: "shadow-[#611885]/20"
             },
             features: [
-                { title: "Экономия времени", text: "Автоматический анализ \nи отчеты." },
-                { title: "Универсальность", text: "Обработка разных форматов документов (выгрузки\nиз 1C, Excel, Word и PDF, включая сканы)." },
-                { title: "«Умный» анализ", text: "Быстрое выявление подозрительных сделок." },
-                { title: "Минимизация ошибок", text: "Меньше ошибок благодаря\nотказу от “ручной” обработки документов." },
-                { title: "Безопасность данных", text: "Обработка данных\nна собственных серверах, защищённых по ISO 27001, исключает\nвозможность «утечек»." },
+                { title: "Экономия времени", text: "Быстрое выявление подозрительных сделок, автоматический анализ и отчеты." },
+                { title: "Универсальность", text: "Обработка разных форматов документов (выгрузки из 1C, Excel, Word и PDF, включая сканы)." },
+                { title: "Минимизация ошибок", text: "Меньше ошибок благодаря отказу\nот “ручной” обработки документов." },
+                { title: "Безопасность данных", text: "Обработка данных на собственных серверах, защищённых по ISO 27001, исключает возможность «утечек»." },
             ]
         },
         'au-publicator': {
@@ -155,13 +154,13 @@ const ProductPageDesktop = () => {
             {/* Hero Section (Desktop) */}
             <section className="max-w-7xl mx-auto px-4 mb-5 pt-5">
                 <div className="text-center max-w-5xl mx-auto mb-16">
-                    <span className={`text-4xl md:text-5xl font-black mb-4 block bg-gradient-to-r ${data.theme.gradient} bg-clip-text text-transparent`}>
+                    <span className={`text-4xl md:text-5xl font-black mb-4 block text-[#00396a]`}>
                         {data.title}
                     </span>
-                    <h1 className={`text-4xl font-extrabold mb-6 leading-tight bg-gradient-to-r ${data.theme.gradient} bg-clip-text text-transparent text-[#00396a]`}>{data.slogan}</h1>
-                    <p className={`text-2xl text-neutral mb-10 max-w-5xl mx-auto bg-gradient-to-r ${data.theme.gradient} bg-clip-text text-transparent whitespace-pre-line`}>{data.desc}</p>
+                    <h1 className={`text-4xl font-extrabold mb-6 leading-tight text-[#00396a]`}>{data.slogan}</h1>
+                    <p className={`text-2xl text-neutral mb-10 max-w-5xl mx-auto text-[#00396a] whitespace-pre-line`}>{data.desc}</p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button variant="custom" className={`${data.theme.colorButton} text-white hover:shadow-lg px-8 py-4 text-lg`} href={data.siteUrlSSPBID} target="_blank">{data.nameButtonHeader}</Button>
+                        <Button variant="custom" className={`bg-[#00396a] text-white hover:shadow-lg px-8 py-4 text-lg`} href={data.siteUrlSSPBID} target="_blank">{data.nameButtonHeader}</Button>
                         <Button variant="custom" className="bg-white text-[#00396a] shadow-md hover:shadow-lg px-8 py-4 text-lg" onClick={() => document.getElementById('how').scrollIntoView({ behavior: 'smooth' })}>Как это работает</Button>
                     </div>
                 </div>
@@ -169,28 +168,17 @@ const ProductPageDesktop = () => {
 <section className="max-w-7xl mx-auto px-4 mb-20">
     <h2 className="text-2xl md:text-4xl font-extrabold text-center text-[#00396a] mb-12">Ключевые возможности</h2>
     
-    <div className={`grid gap-8 ${
-        productId === 'ai-referent' 
-        ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-6' // 6 колонок для гибкости
-        : 'md:grid-cols-2 lg:grid-cols-4' 
-    }`}>
-        {data.features.map((feat, i) => {
-            // Логика для AI Referent: первые две карточки на 3 колонки (50%), остальные на 2 (33%)
-            const isAiReferent = productId === 'ai-referent';
-            const gridSpan = isAiReferent 
-                ? (i < 2 ? 'lg:col-span-3' : 'lg:col-span-2') 
-                : '';
-
-            return (
-                <div 
-                    key={i} 
-                    className={`bg-[#c0dcf7] p-8 rounded-[32px] shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-full ${gridSpan}`}
-                >
-                    <h3 className="text-2xl font-bold mb-4 text-[#00396a] whitespace-pre-line">{feat.title}</h3>
-                    <p className="text-xl text-[#00396a] mb-2 flex-grow whitespace-pre-line">{feat.text}</p>
-                </div>
-            );
-        })}
+    {/* Сетка теперь всегда 4 колонки для всех продуктов */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {data.features.map((feat, i) => (
+            <div 
+                key={i} 
+                className="bg-[#c0dcf7] p-8 rounded-[32px] shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-full"
+            >
+                <h3 className="text-2xl font-bold mb-4 text-[#00396a] whitespace-pre-line">{feat.title}</h3>
+                <p className="text-xl text-[#00396a] mb-2 flex-grow whitespace-pre-line">{feat.text}</p>
+            </div>
+        ))}
     </div>
 </section>
             </section>
